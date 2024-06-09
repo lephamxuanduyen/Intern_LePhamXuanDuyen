@@ -1,4 +1,3 @@
-package chapter1;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -6,8 +5,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class DriverTest {
-
+public class Chaper2 {
     @Test
     public static void ChromeTest(){
         WebDriverManager.chromedriver().setup();
@@ -31,5 +29,4 @@ public class DriverTest {
         Assert.assertEquals(actualTitle, expectedTitle);
         firefoxDriver.close();
     }
-
 }
