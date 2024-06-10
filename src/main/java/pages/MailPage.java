@@ -4,7 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WindowType;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.Constant;
 import utils.DriverManagement;
+import utils.SeluniumHelper;
 
 import java.time.Duration;
 
@@ -17,7 +19,7 @@ public class MailPage {
 
     public static void openMailPage(){
         DriverManagement.driver.switchTo().newWindow(WindowType.TAB);
-        DriverManagement.driver.get("https://www.guerrillamail.com/inbox");
+        DriverManagement.driver.get(Constant.TempMail);
         mailPage = DriverManagement.driver.getWindowHandle();
     }
 
@@ -27,7 +29,7 @@ public class MailPage {
 
     public static String getFreeMail(){
         DriverManagement.driver.findElement(xpath_CbxScrambleAddress).click();
-        return DriverManagement.driver.findElement(xpath_Email).getText();
+        return SeluniumHelper.getText(xpath_Email);
     }
 
     public static void confirmAccRegistered(String mailConfirm){

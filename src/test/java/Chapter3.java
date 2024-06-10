@@ -19,8 +19,6 @@ public class Chapter3 extends TestBase{
 
     @Test
     void Register(){
-        RegisterPage.openRailway();
-
         mailPage.openMailPage();
         email = mailPage.getFreeMail();
 

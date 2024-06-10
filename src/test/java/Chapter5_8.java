@@ -2,7 +2,7 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.*;
-import utils.DriverManagement;
+import utils.SeluniumHelper;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -27,9 +27,7 @@ public class Chapter5_8 extends TestBase
     private BookTicketsPage bookTicketsPage = new BookTicketsPage();
 
     @Test
-    void Register(){
-        RegisterPage.openRailway();
-
+    void BookTicket(){
         mailPage.openMailPage();
         email = mailPage.getFreeMail();
 
@@ -49,7 +47,8 @@ public class Chapter5_8 extends TestBase
         bookTicketsPage.bookTicket(departDate, null, null, null, ticketAmount);
 
         String expectedResult = "Ticket booked successfully!";
-        String actualResult = DriverManagement.driver.findElement(By.xpath("//div[@id='content']/h1")).getText();
+        By xpath_Message = By.xpath("//div[@id='content']/h1");
+        String actualResult = SeluniumHelper.getText(xpath_Message);
 
         Assert.assertEquals(actualResult, expectedResult);
     }
