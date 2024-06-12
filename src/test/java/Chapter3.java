@@ -1,14 +1,8 @@
 import org.testng.annotations.Test;
 import pages.*;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 public class Chapter3 extends TestBase{
     private String email;
-    private String password = "123456789";
-    private String pid = "12345678";
-    private String emailConfirmInstruction = "thanhletraining03@gmail.com ";
     private String arriveStation = "Phan Thiết";
     private String ticketAmount = "2";
 
@@ -23,13 +17,13 @@ public class Chapter3 extends TestBase{
         email = mailPage.getFreeMail();
 
         registerPage.switchToRailway();
-        registerPage.register(email, password, pid);
+        registerPage.register(email, validPwd, validPid);
 
         mailPage.switchToMailPage();
-        mailPage.confirmAccRegistered(emailConfirmInstruction);
+        mailPage.confirmAccount(emailConfirmInstruction);
 
         loginPage.switchToRailway();
-        loginPage.login(email, password);
+        loginPage.login(email, validPid);
 
         bookTicketsPage.selectTab("Book ticket");
         bookTicketsPage.bookTicket(null, null, arriveStation, null, ticketAmount);

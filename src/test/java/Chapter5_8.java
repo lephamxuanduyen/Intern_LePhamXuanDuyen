@@ -2,18 +2,13 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.*;
-import utils.SeluniumHelper;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import utils.Date;
+import utils.SeleniumHelper;
 
 public class Chapter5_8 extends TestBase
 {
     private String email;
-    private String password = "123456789";
-    private String pid = "12345678";
-    private String emailConfirmInstruction = "thanhletraining03@gmail.com ";
-    private String departDate = LocalDate.now().plusDays(7).format(DateTimeFormatter.ofPattern("M/d/yyyy"));
+    private String departDate = Date.nextDate(7);
     private String departStation = "Sài Gòn";
     private String arriveStation = "Đà Nẵng";
     private String seatType = "Soft seat";
@@ -32,13 +27,13 @@ public class Chapter5_8 extends TestBase
         email = mailPage.getFreeMail();
 
         registerPage.switchToRailway();
-        registerPage.register(email, password, pid);
+        registerPage.register(email,validPwd, validPid);
 
         mailPage.switchToMailPage();
-        mailPage.confirmAccRegistered(emailConfirmInstruction);
+        mailPage.confirmAccount(emailConfirmInstruction);
 
         loginPage.switchToRailway();
-        loginPage.login(email, password);
+        loginPage.login(email, validPwd);
 
         timeTablePage.checkTicket(departStation, arriveStation);
 
@@ -48,7 +43,7 @@ public class Chapter5_8 extends TestBase
 
         String expectedResult = "Ticket booked successfully!";
         By xpath_Message = By.xpath("//div[@id='content']/h1");
-        String actualResult = SeluniumHelper.getText(xpath_Message);
+        String actualResult = SeleniumHelper.getText(xpath_Message);
 
         Assert.assertEquals(actualResult, expectedResult);
     }

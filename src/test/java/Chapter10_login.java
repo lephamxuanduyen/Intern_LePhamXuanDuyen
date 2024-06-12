@@ -1,7 +1,7 @@
 import org.openqa.selenium.NoSuchElementException;
 import org.testng.Assert;
 import utils.DriverManagement;
-import utils.SeluniumHelper;
+import utils.SeleniumHelper;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.LoginPage;
@@ -9,57 +9,51 @@ import pages.LoginPage;
 public class Chapter10_login extends TestBase{
     private LoginPage loginPage = new LoginPage();
 
-    private String validLoginEmail = TestBase.validEmail;
-    private String validPwd = TestBase.validPwd;
     private String invalidPwd = "123456";
     private String noActiveEmail = "duyen123@gmail.com";
 
     @Test
     void TC001(){
-        System.out.println("TC001 - User can log into Railway with valid username and password");
-        loginPage.login(validLoginEmail, validPwd);
+        loginPage.login(validEmail, validPwd);
 
-        String expectedResult = "Welcome " + validLoginEmail;
-        String actualResult = SeluniumHelper.getText(loginPage.xpath_WelcomeUserMessage);
+        String expectedResult = "Welcome " + validEmail;
+        String actualResult = SeleniumHelper.getText(loginPage.xpath_WelcomeUserMessage);
 
         Assert.assertEquals(actualResult, expectedResult);
     }
 
     @Test
     void TC002(){
-        System.out.println("TC002 - User cannot login with blank \"Username\" textbox");
         loginPage.login("", validPwd);
 
         String expectedResult = "There was a problem with your login and/or errors exist in your form.";
-        String actualResult = SeluniumHelper.getText(loginPage.xpath_MessageProblemLogin);
+        String actualResult = SeleniumHelper.getText(loginPage.xpath_MessageProblemAccount);
 
         Assert.assertEquals(actualResult, expectedResult);
     }
 
     @Test
     void TC003(){
-        System.out.println("TC003 - User cannot log into Railway with invalid password");
-        loginPage.login(validLoginEmail, invalidPwd);
+        loginPage.login(validEmail, invalidPwd);
 
         String expectedResult = "There was a problem with your login and/or errors exist in your form.";
-        String actualResult = SeluniumHelper.getText(loginPage.xpath_MessageProblemLogin);
+        String actualResult = SeleniumHelper.getText(loginPage.xpath_MessageProblemAccount);
 
         Assert.assertEquals(actualResult, expectedResult);
     }
 
     @Test
     void TC004(){
-        System.out.println("TC004 - System shows message when user enters wrong password many times");
-        loginPage.login(validLoginEmail, invalidPwd);
+        loginPage.login(validEmail, invalidPwd);
 
         String expectedResult = "Invalid username or password. Please try again.";
-        String actualResult = SeluniumHelper.getText(loginPage.xpath_MessageProblemLogin);
+        String actualResult = SeleniumHelper.getText(loginPage.xpath_MessageProblemAccount);
 
         Assert.assertEquals(actualResult, expectedResult);
 
         for (int i=0; i<4; i++){
-            loginPage.submitLoginForm(validLoginEmail, "123");
-            actualResult = SeluniumHelper.getText(loginPage.xpath_MessageProblemLogin);
+            loginPage.submitLoginForm(validEmail, "123");
+            actualResult = SeleniumHelper.getText(loginPage.xpath_MessageProblemAccount);
             Assert.assertEquals(actualResult, expectedResult);
         }
 
@@ -74,11 +68,10 @@ public class Chapter10_login extends TestBase{
 
     @Test
     void TC005(){
-        System.out.println("TC005 - User can't login with an account hasn't been activated");
         loginPage.login(noActiveEmail, validPwd);
 
         String expectedResult = "Invalid username or password. Please try again.";
-        String actualResult = SeluniumHelper.getText(loginPage.xpath_MessageProblemLogin);
+        String actualResult = SeleniumHelper.getText(loginPage.xpath_MessageProblemAccount);
 
         Assert.assertEquals(actualResult, expectedResult);
     }

@@ -1,6 +1,5 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.LoginPage;
@@ -14,7 +13,6 @@ public class Chapter10_logout extends TestBase{
 
     @Test
     void TC6(){
-        System.out.println("TC006 - User is redirected to Home page after logging out");
         loginPage.login(validLoginEmail, validPwd);
         loginPage.selectTab("Log out");
 

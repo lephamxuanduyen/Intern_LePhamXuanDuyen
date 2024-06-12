@@ -2,38 +2,38 @@
 <testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-06-10T11:05:11 ICT" name="Suite" finished-at="2024-06-10T11:05:47 ICT" duration-ms="35796">
+  <suite started-at="2024-06-11T09:51:07 ICT" name="Suite" finished-at="2024-06-11T09:51:48 ICT" duration-ms="41260">
     <groups>
     </groups>
-    <test started-at="2024-06-10T11:05:11 ICT" name="Test" finished-at="2024-06-10T11:05:47 ICT" duration-ms="35796">
+    <test started-at="2024-06-11T09:51:07 ICT" name="Test" finished-at="2024-06-11T09:51:48 ICT" duration-ms="41260">
       <class name="Chapter3">
-        <test-method is-config="true" signature="Setup()[pri:0, instance:Chapter3@460d0a57]" started-at="2024-06-10T11:05:11 ICT" name="Setup" finished-at="2024-06-10T11:05:17 ICT" duration-ms="6058" status="PASS">
+        <test-method is-config="true" signature="Setup()[pri:0, instance:Chapter3@1f3f4916]" started-at="2024-06-11T09:51:07 ICT" name="Setup" finished-at="2024-06-11T09:51:12 ICT" duration-ms="4763" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Setup -->
-        <test-method signature="Register()[pri:0, instance:Chapter3@460d0a57]" started-at="2024-06-10T11:05:17 ICT" name="Register" finished-at="2024-06-10T11:05:47 ICT" duration-ms="29402" status="FAIL">
-          <exception class="org.openqa.selenium.ElementClickInterceptedException">
+        <test-method signature="Register()[pri:0, instance:Chapter3@1f3f4916]" started-at="2024-06-11T09:51:12 ICT" name="Register" finished-at="2024-06-11T09:51:48 ICT" duration-ms="36156" status="FAIL">
+          <exception class="org.openqa.selenium.NoSuchElementException">
             <message>
-              <![CDATA[element click intercepted: Element <a href="http://www.saferailway.somee.com/Account/Confirm?confirmationCode=Z8FH%2BXsm61UA0QgCcjCYEA%3D%3D" target="_blank">...</a> is not clickable at point (595, 602). Other element would receive the click: <iframe id="aswift_7" name="aswift_7" style="width: 728px !important; height: 90px !important; display: block; margin: 0px auto;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="728" height="90" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allow="attribution-reporting" src="https://googleads.g.doubleclick.net/pagead/html/r20240605/r20110914/zrt_lookup_fy2021.html#RS-3-&amp;adk=1812271801&amp;client=ca-pub-3636152504700635&amp;fa=1&amp;ifi=8&amp;uci=a!8&amp;btvi=5" data-google-container-id="a!8" tabindex="0" title="Advertisement" aria-label="Advertisement" data-google-query-id="CNG-w5GU0IYDFVw4ewcdVdgNQA" data-load-complete="true"></iframe>
+              <![CDATA[no such element: Unable to locate element: {"method":"xpath","selector":"//form//select[@name='ArriveStation']"}
   (Session info: chrome=125.0.6422.142)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
 Build info: version: '4.21.0', revision: '79ed462ef4'
 System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.3'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [a45b6e3f9d3a1a1710b530204bfab911, clickElement {id=f.36A232E9364BB426B3A9FA6D8355E41D.d.6F0B39ABAA83CFFB3B2E0810835259A5.e.51}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 125.0.6422.142, chrome: {chromedriverVersion: 125.0.6422.141 (4b1e8393712..., userDataDir: C:\Users\ADMIN\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:59506}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:59506/devtoo..., se:cdpVersion: 125.0.6422.142, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Element: [[ChromeDriver: chrome on windows (a45b6e3f9d3a1a1710b530204bfab911)] -> xpath: //div[@class='email_body']//a]
-Session ID: a45b6e3f9d3a1a1710b530204bfab911]]>
+Command: [dee13c303e22bbc49eb2f5361ccf3382, findElement {value=//form//select[@name='ArriveStation'], using=xpath}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 125.0.6422.142, chrome: {chromedriverVersion: 125.0.6422.141 (4b1e8393712..., userDataDir: C:\Users\ADMIN\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56092}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56092/devtoo..., se:cdpVersion: 125.0.6422.142, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: dee13c303e22bbc49eb2f5361ccf3382]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element <a href="http://www.saferailway.somee.com/Account/Confirm?confirmationCode=Z8FH%2BXsm61UA0QgCcjCYEA%3D%3D" target="_blank">...</a> is not clickable at point (595, 602). Other element would receive the click: <iframe id="aswift_7" name="aswift_7" style="width: 728px !important; height: 90px !important; display: block; margin: 0px auto;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="728" height="90" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allow="attribution-reporting" src="https://googleads.g.doubleclick.net/pagead/html/r20240605/r20110914/zrt_lookup_fy2021.html#RS-3-&amp;adk=1812271801&amp;client=ca-pub-3636152504700635&amp;fa=1&amp;ifi=8&amp;uci=a!8&amp;btvi=5" data-google-container-id="a!8" tabindex="0" title="Advertisement" aria-label="Advertisement" data-google-query-id="CNG-w5GU0IYDFVw4ewcdVdgNQA" data-load-complete="true"></iframe>
+                <![CDATA[org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//form//select[@name='ArriveStation']"}
   (Session info: chrome=125.0.6422.142)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
 Build info: version: '4.21.0', revision: '79ed462ef4'
 System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.3'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [a45b6e3f9d3a1a1710b530204bfab911, clickElement {id=f.36A232E9364BB426B3A9FA6D8355E41D.d.6F0B39ABAA83CFFB3B2E0810835259A5.e.51}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 125.0.6422.142, chrome: {chromedriverVersion: 125.0.6422.141 (4b1e8393712..., userDataDir: C:\Users\ADMIN\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:59506}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:59506/devtoo..., se:cdpVersion: 125.0.6422.142, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Element: [[ChromeDriver: chrome on windows (a45b6e3f9d3a1a1710b530204bfab911)] -> xpath: //div[@class='email_body']//a]
-Session ID: a45b6e3f9d3a1a1710b530204bfab911
+Command: [dee13c303e22bbc49eb2f5361ccf3382, findElement {value=//form//select[@name='ArriveStation'], using=xpath}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 125.0.6422.142, chrome: {chromedriverVersion: 125.0.6422.141 (4b1e8393712..., userDataDir: C:\Users\ADMIN\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56092}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56092/devtoo..., se:cdpVersion: 125.0.6422.142, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: dee13c303e22bbc49eb2f5361ccf3382
 at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
 at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
 at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
@@ -44,10 +44,13 @@ at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.ja
 at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
 at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
 at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
-at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:223)
-at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:76)
-at pages.MailPage.confirmAccRegistered(MailPage.java:37)
-at Chapter3.Register(Chapter3.java:29)
+at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
+at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:349)
+at utils.SeleniumHelper.enter(SeluniumHelper.java:9)
+at pages.BookTicketsPage.bookTicket(BookTicketsPage.java:19)
+at Chapter3.Register(Chapter3.java:35)
 at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -75,11 +78,11 @@ at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
 at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
 ]]>
             </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.ElementClickInterceptedException -->
+          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Register -->
-        <test-method is-config="true" signature="quitBrowser()[pri:0, instance:Chapter3@460d0a57]" started-at="2024-06-10T11:05:47 ICT" name="quitBrowser" finished-at="2024-06-10T11:05:47 ICT" duration-ms="288" status="PASS">
+        <test-method is-config="true" signature="quitBrowser()[pri:0, instance:Chapter3@1f3f4916]" started-at="2024-06-11T09:51:48 ICT" name="quitBrowser" finished-at="2024-06-11T09:51:48 ICT" duration-ms="304" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- quitBrowser -->
