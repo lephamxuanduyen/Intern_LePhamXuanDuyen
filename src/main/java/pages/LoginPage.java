@@ -1,22 +1,41 @@
 package pages;
 
 import base.PageBase;
+import models.User;
 import org.openqa.selenium.By;
+import org.testng.Assert;
 import utils.SeleniumHelper;
 
 public class LoginPage extends PageBase {
-    protected static By xpath_emailTxb = By.xpath("//form//input[@id='username']");
-    protected static By xpath_pwdtxb = By.xpath("//form//input[@id='password']");
-    protected static By xpath_loginBtn = By.xpath("//form//input[@type='submit']");
+    By xpath_emailTxb = By.xpath("//form//input[@id='username']");
+    By xpath_pwdtxb = By.xpath("//form//input[@id='password']");
+    By xpath_loginBtn = By.xpath("//form//input[@type='submit']");
 
-    public static void submitLoginForm(String email, String pwd){
-        SeleniumHelper.enter(xpath_emailTxb, email);
-        SeleniumHelper.enter(xpath_pwdtxb, pwd);
+    public void submitLoginForm(User user){
+        SeleniumHelper.enter(xpath_emailTxb, user.getEmail());
+        SeleniumHelper.enter(xpath_pwdtxb, user.getPassword());
         SeleniumHelper.click(xpath_loginBtn);
     }
 
-    public static void login(String email, String pwd){
+    public void login(User user){
         selectTab("Login");
-        submitLoginForm(email, pwd);
+        submitLoginForm(user);
+    }
+
+    public void verifyErrorMes(String expectedResult){
+        String actualResult = SeleniumHelper.getText(xpath_MessageProblemAccount);
+        Assert.assertEquals(actualResult, expectedResult);
+    }
+
+    public void loopVerifyErrorMes(int n_loop, String expectedResult){
+        for (int i=0; i<=n_loop; i++){
+            verifyErrorMes(expectedResult);
+        }
+    }
+
+    public void verifyWelcomeMes(String expectedResult){
+        String actualResult = SeleniumHelper.getText(xpath_WelcomeUserMessage);
+
+        Assert.assertEquals(actualResult, expectedResult);
     }
 }

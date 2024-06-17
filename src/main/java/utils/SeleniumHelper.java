@@ -1,12 +1,15 @@
 package utils;
 
+import base.PageBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import pages.MailPage;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Set;
+
 
 public class SeleniumHelper {
     public static void enter(By xpath, String context){
@@ -17,34 +20,54 @@ public class SeleniumHelper {
         DriverManagement.driver.findElement(xpath).click();
     }
 
-    public static void scrollToElement(WebElement element){
+    public static void scrollToElement(By xpath){
+        WebElement element = DriverManagement.driver.findElement(xpath);
         ((JavascriptExecutor) DriverManagement.driver).executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+
+    public static void scroll(int lenght){
+        ((JavascriptExecutor) DriverManagement.driver).executeScript("window.scrollBy(0, " + lenght + ");"); // Scroll half the screen height
     }
 
     public static String getText(By xpath){
         return DriverManagement.driver.findElement(xpath).getText();
     }
 
-    public static void select(String strXpathSelect, String valueOption){
+    public static void select(By XpathSelect, String valueOption){
+        String strXpathSelect = XpathSelect.toString().replaceFirst("By.xpath: ", "");
         String strXpathOption = strXpathSelect + "/option[text()='" + valueOption + "']";
-        By xpath_select = By.xpath(strXpathSelect);
         By xpath_option = By.xpath(strXpathOption);
 
-        scrollToElement(DriverManagement.driver.findElement(xpath_select));
-        click(xpath_select);
+        scrollToElement(XpathSelect);
+        click(XpathSelect);
         click(xpath_option);
     }
 
-    public static ArrayList<String> getAllValueByRow(By xpath_row){
-        ArrayList<String> arr = new ArrayList<String>();
-        List<WebElement> itemsOfRow = DriverManagement.driver.findElements(xpath_row);
-        for (WebElement i: itemsOfRow){
-            arr.add(i.getText());
+    public static void verifyEleDisplay(By xpath){
+        try {
+            DriverManagement.driver.findElement(xpath).isDisplayed();
+            Assert.assertTrue(true);
+        } catch (NoSuchElementException e) {
+            Assert.fail("Element don\'t display.");
         }
-        return arr;
     }
 
-    public static String getUrl(){
-        return DriverManagement.driver.getCurrentUrl();
+    public static void verifyEleNoDiplay(By xpath){
+        try {
+            DriverManagement.driver.findElement(xpath).isDisplayed();
+            Assert.fail("Element exists");
+        } catch (NoSuchElementException e) {
+            Assert.assertTrue(e instanceof NoSuchElementException);
+        }
+    }
+
+    public static void switchOtherTab(MailPage mailPage, PageBase pageBase){
+        Set<String> allTabs = DriverManagement.driver.getWindowHandles();
+        for (String tab : allTabs) {
+            if (!tab.equals(mailPage.tempMailWindow) && !tab.equals(pageBase.RailwayWindow)) {
+                DriverManagement.driver.switchTo().window(tab);
+                break;
+            }
+        }
     }
 }

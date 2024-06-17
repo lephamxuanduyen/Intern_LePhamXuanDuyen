@@ -1,15 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
-  <test thread-count="5" name="Test(failed)">
+  <test thread-count="5" name="Railway - Login(failed)">
     <classes>
-      <class name="Chapter3">
+      <class name="Login">
         <methods>
+          <include name="TC003"/>
+          <include name="TC001"/>
+          <include name="TC004"/>
+          <include name="TC002"/>
+          <include name="Setup"/>
+          <include name="quitBrowser"/>
+          <include name="TC005"/>
+        </methods>
+      </class> <!-- Login -->
+    </classes>
+  </test> <!-- Railway - Login(failed) -->
+  <test thread-count="5" name="Railway - Register(failed)">
+    <classes>
+      <class name="CreateAccount">
+        <methods>
+          <include name="TC008"/>
           <include name="quitBrowser"/>
           <include name="Setup"/>
-          <include name="Register"/>
+          <include name="TC009"/>
         </methods>
-      </class> <!-- Chapter3 -->
+      </class> <!-- CreateAccount -->
     </classes>
-  </test> <!-- Test(failed) -->
+  </test> <!-- Railway - Register(failed) -->
+  <test thread-count="5" name="Railway - Reset password(failed)">
+    <classes>
+      <class name="ResetPwd">
+        <methods>
+          <include name="TC010"/>
+          <include name="quitBrowser"/>
+          <include name="Setup"/>
+          <include name="TC011"/>
+        </methods>
+      </class> <!-- ResetPwd -->
+    </classes>
+  </test> <!-- Railway - Reset password(failed) -->
+  <test thread-count="5" name="Railway - Book ticket(failed)">
+    <classes>
+      <class name="BookTicket">
+        <methods>
+          <include name="TC014"/>
+          <include name="TC013"/>
+          <include name="quitBrowser"/>
+          <include name="Setup"/>
+          <include name="TC015"/>
+        </methods>
+      </class> <!-- BookTicket -->
+    </classes>
+  </test> <!-- Railway - Book ticket(failed) -->
 </suite> <!-- Failed suite [Suite] -->

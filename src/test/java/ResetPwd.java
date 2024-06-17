@@ -1,3 +1,4 @@
+import base.PageBase;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -8,11 +9,12 @@ import utils.SeleniumHelper;
 
 import java.util.Set;
 
-public class Chapter10_resetPwd extends TestBase{
+public class ResetPwd extends TestBase{
+    private PageBase pageBase = new PageBase();
     private ResetPasswordPage resetPasswordPage = new ResetPasswordPage();
     private MailPage mailPage = new MailPage();
 
-    @Test
+    @Test(description = "Reset password shows error if the new password is same as current")
     void TC010(){
         resetPasswordPage.selectTab("Login");
         resetPasswordPage.submitPwdResetForm(validEmail);
@@ -20,17 +22,11 @@ public class Chapter10_resetPwd extends TestBase{
         mailPage.openMailPage();
         mailPage.selectMailbox(mailName, mailDomain);
         mailPage.confirmAccount(emailConfirmInstruction);
+        mailPage.deleteMail(emailConfirmInstruction);
 
-        Set<String> allTabs = DriverManagement.driver.getWindowHandles();
-        for (String tab : allTabs) {
-            if (!tab.equals(mailPage.tempMailWindow) && !tab.equals(resetPasswordPage.RailwayWindow)) {
-                DriverManagement.driver.switchTo().window(tab);
-                break;
-            }
-        }
+        SeleniumHelper.switchOtherTab(mailPage, pageBase);
 
-        By xpath_resetTokenTxb = By.xpath("//div[@id='content']//form//input[@id='resetToken']");
-        Assert.assertNotNull(SeleniumHelper.getText(xpath_resetTokenTxb));
+        Assert.assertNotNull(SeleniumHelper.getText(resetPasswordPage.xpath_resetTokenTxb));
 
         resetPasswordPage.resetPwd(validPwd, validPwd);
         String actualMessage = SeleniumHelper.getText(resetPasswordPage.xpath_message);
@@ -38,7 +34,7 @@ public class Chapter10_resetPwd extends TestBase{
         Assert.assertEquals(actualMessage, expectedMessage);
     }
 
-    @Test
+    @Test(description = "Reset password shows error if the new password and confirm password doesn't match")
     void TC011(){
         resetPasswordPage.selectTab("Login");
         resetPasswordPage.submitPwdResetForm(validEmail);
@@ -46,17 +42,11 @@ public class Chapter10_resetPwd extends TestBase{
         mailPage.openMailPage();
         mailPage.selectMailbox(mailName, mailDomain);
         mailPage.confirmAccount(emailConfirmInstruction);
+        mailPage.deleteMail(emailConfirmInstruction);
 
-        Set<String> allTabs = DriverManagement.driver.getWindowHandles();
-        for (String tab : allTabs) {
-            if (!tab.equals(mailPage.tempMailWindow) && !tab.equals(resetPasswordPage.RailwayWindow)) {
-                DriverManagement.driver.switchTo().window(tab);
-                break;
-            }
-        }
+        SeleniumHelper.switchOtherTab(mailPage, pageBase);
 
-        By xpath_resetTokenTxb = By.xpath("//div[@id='content']//form//input[@id='resetToken']");
-        Assert.assertNotNull(SeleniumHelper.getText(xpath_resetTokenTxb));
+        Assert.assertNotNull(SeleniumHelper.getText(resetPasswordPage.xpath_resetTokenTxb));
 
         String newPassword = "789456123";
         String confirmPassword = "123456789";

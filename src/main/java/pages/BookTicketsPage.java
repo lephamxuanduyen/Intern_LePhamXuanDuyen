@@ -1,41 +1,32 @@
 package pages;
 
 import base.PageBase;
+import models.Ticket;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import utils.DriverManagement;
 import utils.SeleniumHelper;
 
-import java.time.Duration;
-import java.util.ArrayList;
-
 public class BookTicketsPage extends PageBase {
-    protected static String xpath_DepartDateTxb = "//form//select[@name='Date']";
-    protected static String xpath_DepartStationTxb = "//form//select[@name='DepartStation']";
-    protected static String xpath_arriveStationTxb = "//form//select[@name='ArriveStation']";
-    protected static String xpath_seatTypeTxb = "//form//select[@name='SeatType']";
-    protected static String xpath_ticketAmountTxb = "//form//select[@name='TicketAmount']";
-    protected static By xpath_submitFormBtn = By.xpath("//form//input[@type='submit']");
-    protected static String xpath_infoBookTicketSucc = "//table//td[count(//th[text()='%s']/preceding-sibling::th) + 1]";
+    By xpath_DepartDateTxb = By.xpath("//form//select[@name='Date']");
+    By xpath_DepartStationTxb = By.xpath("//form//select[@name='DepartStation']");
+    By xpath_arriveStationTxb = By.xpath("//form//select[@name='ArriveStation']");
+    By xpath_seatTypeTxb = By.xpath("//form//select[@name='SeatType']");
+    By xpath_ticketAmountTxb = By.xpath("//form//select[@name='TicketAmount']");
+    By xpath_submitFormBtn = By.xpath("//form//input[@type='submit']");
+    String xpath_infoBookTicketSucc = "//table//td[count(//th[text()='%s']/preceding-sibling::th) + 1]";
+    public By xpath_Message = By.xpath("//div[@id='content']/h1");
 
-    public static By xpath_MesBookTicketSucc = By.xpath("//div[@id='content']/h1");
+    public By xpath_MesBookTicketSucc = By.xpath("//div[@id='content']/h1");
 
-    public static void bookTicket(String departDate, String departStation, String arriveStation, String seatType, String ticketAmount){
-        if (departDate!=null) {SeleniumHelper.select(xpath_DepartDateTxb, departDate);}
-        if (departStation!=null) { SeleniumHelper.select(xpath_DepartStationTxb, departStation); }
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        if (arriveStation!=null) { SeleniumHelper.select(xpath_arriveStationTxb, arriveStation); }
-        if (seatType!=null) { SeleniumHelper.select(xpath_seatTypeTxb, seatType); }
-        if (ticketAmount!=null) { SeleniumHelper.select(xpath_ticketAmountTxb, ticketAmount); }
+    public void bookTicket(Ticket ticket){
+        if (ticket.getDepartDate()!=null) {SeleniumHelper.enter(xpath_DepartDateTxb, ticket.getDepartDate());}
+        if (ticket.getDepartStation()!=null) { SeleniumHelper.enter(xpath_DepartStationTxb, ticket.getDepartStation()); }
+        if (ticket.getSeatType()!=null) { SeleniumHelper.enter(xpath_seatTypeTxb, ticket.getSeatType()); }
+        if (ticket.getTicketAmount()!=null) { SeleniumHelper.select(xpath_ticketAmountTxb, ticket.getTicketAmount()); }
+        if (ticket.getArriveStation()!=null) { SeleniumHelper.enter(xpath_arriveStationTxb, ticket.getArriveStation()); }
         SeleniumHelper.click(xpath_submitFormBtn);
     }
 
-    public static String getInfoBookTicketSucc(String info){
+    public String getInfoBookTicketSucc(String info){
         return SeleniumHelper.getText(By.xpath(String.format(xpath_infoBookTicketSucc, info)));
     }
 }

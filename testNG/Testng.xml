@@ -1,9 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite">
-    <test name="Test">
+    <test name="Railway - Login">
         <classes>
-            <class name="Chapter3"/>
+            <class name="Login"/>
+        </classes>
+    </test> <!-- Test -->
+    <test name="Railway - Logout">
+        <classes>
+            <class name="Logout"/>
+        </classes>
+    </test> <!-- Test -->
+    <test name="Railway - Register">
+        <classes>
+            <class name="CreateAccount"/>
+        </classes>
+    </test> <!-- Test -->
+    <test name="Railway - Reset password">
+        <classes>
+            <class name="ResetPwd"/>
+        </classes>
+    </test> <!-- Test -->
+    <test name="Railway - Book ticket">
+        <classes>
+            <class name="BookTicket"/>
+        </classes>
+    </test> <!-- Test -->
+    <test name="Railway - Cancel booking">
+        <classes>
+            <class name="CancelBooking"/>
         </classes>
     </test> <!-- Test -->
 </suite> <!-- Suite -->

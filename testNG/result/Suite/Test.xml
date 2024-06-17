@@ -32,7 +32,7 @@ at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:5
 at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
 at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:349)
 at utils.SeleniumHelper.enter(SeluniumHelper.java:9)
-at pages.BookTicketsPage.bookTicket(BookTicketsPage.java:19)
+at pages.BookTicketsPage.BookTicket(BookTicketsPage.java:19)
 at Chapter3.Register(Chapter3.java:35)
 at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)

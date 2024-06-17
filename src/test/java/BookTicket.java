@@ -1,5 +1,6 @@
 
-import org.openqa.selenium.By;
+import models.Ticket;
+import models.User;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -10,15 +11,17 @@ import pages.TimeTablePage;
 import utils.Date;
 import utils.SeleniumHelper;
 
-public class Chapter10_bookTicket extends TestBase{
+public class BookTicket extends TestBase{
     private LoginPage loginPage = new LoginPage();
     private BookTicketsPage bookTicketsPage = new BookTicketsPage();
     private TimeTablePage timeTablePage = new TimeTablePage();
     private TicketPricePage ticketPricePage = new TicketPricePage();
 
-    @Test
+    User validUser = new User(validEmail, validPwd);
+
+    @Test(description = "User can book 1 ticket at a time")
     void TC012(){
-        loginPage.login(validEmail, validPwd);
+        loginPage.login(validUser);
 
         String departDate = Date.nextDate(12);
         String departStation = "Nha Trang";
@@ -26,8 +29,10 @@ public class Chapter10_bookTicket extends TestBase{
         String seatType = "Soft bed with air conditioner";
         String ticketAmount = "1";
 
+        Ticket ticket = new Ticket(departDate, departStation, arriveStation, seatType, ticketAmount);
+
         bookTicketsPage.selectTab("Book ticket");
-        bookTicketsPage.bookTicket(departDate, departStation, arriveStation, seatType, ticketAmount);
+        bookTicketsPage.bookTicket(ticket);
 
         String actualMes = SeleniumHelper.getText(bookTicketsPage.xpath_MesBookTicketSucc);
         String expectedMes = "Ticket booked successfully!";
@@ -50,18 +55,20 @@ public class Chapter10_bookTicket extends TestBase{
         softAssertions.assertAll();
     }
 
-    @Test
+    @Test(description = "User can book many tickets at a time")
     void TC013(){
-        loginPage.login(validEmail, validPwd);
+        loginPage.login(validUser);
 
         String departDate = Date.nextDate(25);
         String departStation = "Nha Trang";
         String arriveStation = "Sài Gòn";
         String seatType = "Soft seat with air conditioner";
         String ticketAmount = "5";
+        Ticket ticket = new Ticket(departDate, departStation, arriveStation, seatType, ticketAmount);
+
 
         bookTicketsPage.selectTab("Book ticket");
-        bookTicketsPage.bookTicket(departDate, departStation, arriveStation, seatType, ticketAmount);
+        bookTicketsPage.bookTicket(ticket);
 
         String actualMes = SeleniumHelper.getText(bookTicketsPage.xpath_MesBookTicketSucc);
         String expectedMes = "Ticket booked successfully!";
@@ -84,11 +91,11 @@ public class Chapter10_bookTicket extends TestBase{
         softAssertions.assertAll();
     }
 
-    @Test
+    @Test(description = "User can check price of ticket from Timetable")
     void TC014(){
         String departStation = "Đà Nẵng";
         String arriveStation = "Sài Gòn";
-        loginPage.login(validEmail, validPwd);
+        loginPage.login(validUser);
         timeTablePage.checkTicket(departStation, arriveStation);
 
         String actualHeaderTicketPrice = SeleniumHelper.getText(ticketPricePage.xpath_header);
@@ -121,22 +128,22 @@ public class Chapter10_bookTicket extends TestBase{
         softAssertions.assertAll();
     }
 
-    @Test
+    @Test(description = "User can book ticket from Timetable")
     void TC015(){
         String departDate = Date.nextDate(10);
         String departStation = "Quảng Ngãi";
         String arriveStation = "Huế";
         String ticketAmount = "5";
+        Ticket ticket = new Ticket(departDate, null, null, null, ticketAmount);
 
-        loginPage.login(validEmail, validPwd);
+        loginPage.login(validUser);
 
         timeTablePage.bookTicket(departStation, arriveStation);
 
-        bookTicketsPage.bookTicket(departDate, null, null, null, ticketAmount);
+        bookTicketsPage.bookTicket(ticket);
 
         String expectedResult = "Ticket booked successfully!";
-        By xpath_Message = By.xpath("//div[@id='content']/h1");
-        String actualResult = SeleniumHelper.getText(xpath_Message);
+        String actualResult = SeleniumHelper.getText(bookTicketsPage.xpath_Message);
 
         Assert.assertEquals(actualResult, expectedResult);
     }
