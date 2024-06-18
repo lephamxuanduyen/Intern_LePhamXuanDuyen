@@ -20,7 +20,7 @@ public class CreateAccount extends TestBase{
         registerPage.register(user);
 
         String expectedResult = "This email address is already in use.";
-        String actualResult = Action.getText(registerPage.xpath_MessageProblemAccount);
+        String actualResult = Action.getText(registerPage.messageProblemAccount);
         Assert.assertEquals(actualResult, expectedResult);
     }
 
@@ -40,8 +40,8 @@ public class CreateAccount extends TestBase{
         String expectedMesInvalidPid = "Invalid ID length.";
 
         String actualMesProblem = Action.getText(registerPage.xpath_MessageProblemAccount);
-        String actualMesInvalidPwd = Action.getText(registerPage.xpath_messageInvalidPwd);
-        String actualMesInvalidPid = Action.getText(registerPage.xpath_messageInvalidPid);
+        String actualMesInvalidPwd = Action.getText(registerPage.messageInvalidPwd);
+        String actualMesInvalidPid = Action.getText(registerPage.messageInvalidPid);
 
         SoftAssert softAssertions = new SoftAssert();
 
@@ -66,7 +66,7 @@ public class CreateAccount extends TestBase{
 
         Action.switchOtherTab(mailPage, pageBase);
 
-        String actualResult = Action.getText(registerPage.xpath_messageRegisterSucc);
+        String actualResult = Action.getText(registerPage.messageRegisterSucc);
         String expextedResult = "Registration Confirmed! You can now log in to the site";
         Assert.assertEquals(actualResult, expextedResult);
     }

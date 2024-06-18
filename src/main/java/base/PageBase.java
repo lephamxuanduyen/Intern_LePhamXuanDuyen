@@ -9,8 +9,8 @@ public class PageBase {
     public static String RailwayWindow;
     public String tempMailWindow;
 
-    public By xpath_WelcomeUserMessage = By.xpath("//div[@id='banner']//strong");
-    public By xpath_MessageProblemAccount = By.xpath("//div[@id='content']/p[contains(@class, 'message error') and following-sibling::form]");
+    public By welcomeUserMessage = By.xpath("//div[@id='banner']//strong");
+    public By messageProblemAccount = By.xpath("//div[@id='content']/p[contains(@class, 'message error') and following-sibling::form]");
 
     public static void openRailway(){
         int retryCount = 5; // Số lần thử tải lại trang tối đa

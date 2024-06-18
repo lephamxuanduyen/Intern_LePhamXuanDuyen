@@ -7,14 +7,14 @@ import org.testng.Assert;
 import utils.Action;
 
 public class LoginPage extends PageBase {
-    By xpath_emailTxb = By.xpath("//form//input[@id='username']");
-    By xpath_pwdtxb = By.xpath("//form//input[@id='password']");
-    By xpath_loginBtn = By.xpath("//form//input[@type='submit']");
+    By emailTxb = By.xpath("//form//input[@id='username']");
+    By pwdtxb = By.xpath("//form//input[@id='password']");
+    By loginBtn = By.xpath("//form//input[@type='submit']");
 
     public void submitLoginForm(User user){
-        Action.enter(xpath_emailTxb, user.getEmail());
-        Action.enter(xpath_pwdtxb, user.getPassword());
-        Action.click(xpath_loginBtn);
+        Action.enter(emailTxb, user.getEmail());
+        Action.enter(pwdtxb, user.getPassword());
+        Action.click(loginBtn);
     }
 
     public void login(User user){
@@ -23,7 +23,7 @@ public class LoginPage extends PageBase {
     }
 
     public void verifyErrorMes(String expectedResult){
-        String actualResult = Action.getText(xpath_MessageProblemAccount);
+        String actualResult = Action.getText(messageProblemAccount);
         Assert.assertEquals(actualResult, expectedResult);
     }
 
@@ -34,7 +34,7 @@ public class LoginPage extends PageBase {
     }
 
     public void verifyWelcomeMes(String expectedResult){
-        String actualResult = Action.getText(xpath_WelcomeUserMessage);
+        String actualResult = Action.getText(welcomeUserMessage);
 
         Assert.assertEquals(actualResult, expectedResult);
     }

@@ -5,29 +5,25 @@ import org.openqa.selenium.By;
 import utils.Action;
 
 public class RegisterPage extends PageBase {
-    By xpath_email = By.xpath("//form[@id='RegisterForm']//li//input[@id='email']");
-    By xpath_passwword = By.xpath("//form[@id='RegisterForm']//li//input[@id='password']");
-    By xpath_confirmPwd = By.xpath("//form[@id='RegisterForm']//li//input[@id='confirmPassword']");
-    By xpath_pid = By.xpath("//form[@id='RegisterForm']//li//input[@id='pid']");
-    By xpath_registerBtn = By.xpath("//form[@id='RegisterForm']//input[@type='submit']");
-    public By xpath_messageInvalidPwd = By.xpath("//form//label[preceding-sibling::input[@id='password']]");
-    public By xpath_messageInvalidPid = By.xpath("//form//label[preceding-sibling::input[@id='pid']]");
-    public By xpath_messageRegisterSucc = By.xpath("//div[@id='content']/p");
+    By emailTxb = By.xpath("//input[@id='email']");
+    By passwwordTxb = By.xpath("//input[@id='password']");
+    By confirmPwdTxb = By.xpath("//input[@id='confirmPassword']");
+    By pidTxb = By.xpath("//input[@id='pid']");
+    By registerBtn = By.xpath("//input[@type='submit']");
+    public By messageInvalidPwd = By.xpath("//form//label[preceding-sibling::input[@id='password']]");
+    public By messageInvalidPid = By.xpath("//form//label[preceding-sibling::input[@id='pid']]");
+    public By messageRegisterSucc = By.xpath("//div[@id='content']/p");
 
     public void submitRegisterForm(User user){
-        Action.enter(xpath_email, user.getEmail());
-        Action.enter(xpath_passwword, user.getPassword());
-        Action.enter(xpath_confirmPwd,user.getPassword());
-        Action.enter(xpath_pid, user.getPid());
-        Action.click(xpath_registerBtn);
+        Action.enter(emailTxb, user.getEmail());
+        Action.enter(passwwordTxb, user.getPassword());
+        Action.enter(confirmPwdTxb,user.getPassword());
+        Action.enter(pidTxb, user.getPid());
+        Action.click(registerBtn);
     }
 
     public void register(User user){
         selectTab("Register");
         submitRegisterForm(user);
-    }
-
-    public void registerWithTempMail(String pwd, String pid){
-
     }
 }

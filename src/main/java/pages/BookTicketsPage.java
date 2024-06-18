@@ -6,27 +6,26 @@ import org.openqa.selenium.By;
 import utils.Action;
 
 public class BookTicketsPage extends PageBase {
-    By xpath_DepartDateTxb = By.xpath("//form//select[@name='Date']");
-    By xpath_DepartStationTxb = By.xpath("//form//select[@name='DepartStation']");
-    By xpath_arriveStationTxb = By.xpath("//form//select[@name='ArriveStation']");
-    By xpath_seatTypeTxb = By.xpath("//form//select[@name='SeatType']");
-    By xpath_ticketAmountTxb = By.xpath("//form//select[@name='TicketAmount']");
-    By xpath_submitFormBtn = By.xpath("//form//input[@type='submit']");
-    String xpath_infoBookTicketSucc = "//table//td[count(//th[text()='%s']/preceding-sibling::th) + 1]";
-    public By xpath_Message = By.xpath("//div[@id='content']/h1");
-
-    public By xpath_MesBookTicketSucc = By.xpath("//div[@id='content']/h1");
+    By departDateTxb = By.xpath("//select[@name='Date']");
+    By departStationTxb = By.xpath("//select[@name='DepartStation']");
+    By arriveStationTxb = By.xpath("//select[@name='ArriveStation']");
+    By seatTypeTxb = By.xpath("//select[@name='SeatType']");
+    By ticketAmountTxb = By.xpath("//select[@name='TicketAmount']");
+    By submitFormBtn = By.xpath("//input[@type='submit']");
+    String infoBookTicketSucc = "//table//td[count(//th[text()='%s']/preceding-sibling::th) + 1]";
+    public By message = By.xpath("//div[@id='content']/h1");
+    public By mesBookTicketSucc = By.xpath("//div[@id='content']/h1");
 
     public void bookTicket(Ticket ticket){
-        if (ticket.getDepartDate()!=null) {Action.enter(xpath_DepartDateTxb, ticket.getDepartDate());}
-        if (ticket.getDepartStation()!=null) { Action.enter(xpath_DepartStationTxb, ticket.getDepartStation()); }
-        if (ticket.getSeatType()!=null) { Action.enter(xpath_seatTypeTxb, ticket.getSeatType()); }
-        if (ticket.getTicketAmount()!=null) { Action.select(xpath_ticketAmountTxb, ticket.getTicketAmount()); }
-        if (ticket.getArriveStation()!=null) { Action.enter(xpath_arriveStationTxb, ticket.getArriveStation()); }
-        Action.click(xpath_submitFormBtn);
+        if (ticket.getDepartDate()!=null) {Action.enter(departDateTxb, ticket.getDepartDate());}
+        if (ticket.getDepartStation()!=null) { Action.enter(departStationTxb, ticket.getDepartStation()); }
+        if (ticket.getSeatType()!=null) { Action.enter(seatTypeTxb, ticket.getSeatType()); }
+        if (ticket.getTicketAmount()!=null) { Action.select(ticketAmountTxb, ticket.getTicketAmount()); }
+        if (ticket.getArriveStation()!=null) { Action.enter(arriveStationTxb, ticket.getArriveStation()); }
+        Action.click(submitFormBtn);
     }
 
     public String getInfoBookTicketSucc(String info){
-        return Action.getText(By.xpath(String.format(xpath_infoBookTicketSucc, info)));
+        return Action.getText(By.xpath(String.format(infoBookTicketSucc, info)));
     }
 }

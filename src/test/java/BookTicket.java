@@ -34,7 +34,7 @@ public class BookTicket extends TestBase{
         bookTicketsPage.selectTab("Book ticket");
         bookTicketsPage.bookTicket(ticket);
 
-        String actualMes = Action.getText(bookTicketsPage.xpath_MesBookTicketSucc);
+        String actualMes = Action.getText(bookTicketsPage.mesBookTicketSucc);
         String expectedMes = "Ticket booked successfully!";
 
         SoftAssert softAssertions = new SoftAssert();
@@ -70,7 +70,7 @@ public class BookTicket extends TestBase{
         bookTicketsPage.selectTab("Book ticket");
         bookTicketsPage.bookTicket(ticket);
 
-        String actualMes = Action.getText(bookTicketsPage.xpath_MesBookTicketSucc);
+        String actualMes = Action.getText(bookTicketsPage.mesBookTicketSucc);
         String expectedMes = "Ticket booked successfully!";
 
         SoftAssert softAssertions = new SoftAssert();
@@ -98,8 +98,8 @@ public class BookTicket extends TestBase{
         loginPage.login(validUser);
         timeTablePage.checkTicket(departStation, arriveStation);
 
-        String actualHeaderTicketPrice = Action.getText(ticketPricePage.xpath_header);
-        String actualTableHeader = Action.getText(ticketPricePage.xpath_tableHeader);
+        String actualHeaderTicketPrice = Action.getText(ticketPricePage.header);
+        String actualTableHeader = Action.getText(ticketPricePage.tableHeader);
         String actualHSPrice = ticketPricePage.getPriceBySeatType("HS");
         String actualSSPrice = ticketPricePage.getPriceBySeatType("SS");
         String actualSSCPrice = ticketPricePage.getPriceBySeatType("SSC");
@@ -143,7 +143,7 @@ public class BookTicket extends TestBase{
         bookTicketsPage.bookTicket(ticket);
 
         String expectedResult = "Ticket booked successfully!";
-        String actualResult = Action.getText(bookTicketsPage.xpath_Message);
+        String actualResult = Action.getText(bookTicketsPage.message);
 
         Assert.assertEquals(actualResult, expectedResult);
     }

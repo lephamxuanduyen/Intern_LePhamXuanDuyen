@@ -22,10 +22,10 @@ public class ResetPwd extends TestBase{
 
         Action.switchOtherTab(mailPage, pageBase);
 
-        Assert.assertNotNull(Action.getText(resetPasswordPage.xpath_resetTokenTxb));
+        Assert.assertNotNull(Action.getText(resetPasswordPage.resetTokenTxb));
 
         resetPasswordPage.resetPwd(validPwd, validPwd);
-        String actualMessage = Action.getText(resetPasswordPage.xpath_message);
+        String actualMessage = Action.getText(resetPasswordPage.message);
         String expectedMessage = "The new password cannot be the same with the current password";
         Assert.assertEquals(actualMessage, expectedMessage);
     }
@@ -42,17 +42,17 @@ public class ResetPwd extends TestBase{
 
         Action.switchOtherTab(mailPage, pageBase);
 
-        Assert.assertNotNull(Action.getText(resetPasswordPage.xpath_resetTokenTxb));
+        Assert.assertNotNull(Action.getText(resetPasswordPage.resetTokenTxb));
 
         String newPassword = "789456123";
         String confirmPassword = "123456789";
 
         resetPasswordPage.resetPwd(newPassword, confirmPassword);
-        String actualMessage = Action.getText(resetPasswordPage.xpath_message);
+        String actualMessage = Action.getText(resetPasswordPage.message);
         String expectedMessage = "Could not reset password. Please correct the errors and try again.";
         Assert.assertEquals(actualMessage, expectedMessage);
 
-        String actualErrorConfirmPwd = Action.getText(resetPasswordPage.xpath_mesErrorConfirmPwd);
+        String actualErrorConfirmPwd = Action.getText(resetPasswordPage.mesErrorConfirmPwd);
         String expectedErrorConfirmPwd = "The password confirmation did not match the new password.";
 
         Assert.assertEquals(actualErrorConfirmPwd, expectedErrorConfirmPwd);
