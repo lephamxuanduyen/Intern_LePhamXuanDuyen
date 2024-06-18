@@ -17,11 +17,11 @@ public class BookTicketsPage extends PageBase {
     public By mesBookTicketSucc = By.xpath("//div[@id='content']/h1");
 
     public void bookTicket(Ticket ticket){
-        if (ticket.getDepartDate()!=null) {Action.enter(departDateTxb, ticket.getDepartDate());}
-        if (ticket.getDepartStation()!=null) { Action.enter(departStationTxb, ticket.getDepartStation()); }
-        if (ticket.getSeatType()!=null) { Action.enter(seatTypeTxb, ticket.getSeatType()); }
-        if (ticket.getTicketAmount()!=null) { Action.select(ticketAmountSelect, ticket.getTicketAmount()); }
-        if (ticket.getArriveStation()!=null) { Action.enter(arriveStationTxb, ticket.getArriveStation()); }
+        Action.enter(departDateTxb, ticket.getDepartDate());
+        Action.enter(departStationTxb, ticket.getDepartStation());
+        Action.enter(seatTypeTxb, ticket.getSeatType());
+        Action.select(ticketAmountSelect, ticket.getTicketAmount());
+        Action.enter(arriveStationTxb, ticket.getArriveStation());
         Action.click(submitFormBtn);
     }
 
