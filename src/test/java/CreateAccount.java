@@ -31,7 +31,7 @@ public class CreateAccount extends TestBase{
         mailPage.openMailPage();
         String email = mailPage.getFreeMail();
 
-        User user = new User(email, validPwd, validPid);
+        User user = new User(email, "", "");
 
         pageBase.switchToRailway();
         registerPage.register(user);

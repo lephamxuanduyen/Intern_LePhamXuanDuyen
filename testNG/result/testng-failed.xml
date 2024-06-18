@@ -8,10 +8,8 @@
           <include name="TC003"/>
           <include name="TC001"/>
           <include name="TC004"/>
-          <include name="TC002"/>
-          <include name="Setup"/>
-          <include name="quitBrowser"/>
-          <include name="TC005"/>
+          <include name="clean"/>
+          <include name="setup"/>
         </methods>
       </class> <!-- Login -->
     </classes>
@@ -21,9 +19,9 @@
       <class name="CreateAccount">
         <methods>
           <include name="TC008"/>
-          <include name="quitBrowser"/>
-          <include name="Setup"/>
+          <include name="clean"/>
           <include name="TC009"/>
+          <include name="setup"/>
         </methods>
       </class> <!-- CreateAccount -->
     </classes>
@@ -33,9 +31,8 @@
       <class name="ResetPwd">
         <methods>
           <include name="TC010"/>
-          <include name="quitBrowser"/>
-          <include name="Setup"/>
-          <include name="TC011"/>
+          <include name="clean"/>
+          <include name="setup"/>
         </methods>
       </class> <!-- ResetPwd -->
     </classes>
@@ -44,13 +41,23 @@
     <classes>
       <class name="BookTicket">
         <methods>
-          <include name="TC014"/>
-          <include name="TC013"/>
-          <include name="quitBrowser"/>
-          <include name="Setup"/>
           <include name="TC015"/>
+          <include name="clean"/>
+          <include name="setup"/>
+          <include name="TC013"/>
         </methods>
       </class> <!-- BookTicket -->
     </classes>
   </test> <!-- Railway - Book ticket(failed) -->
+  <test thread-count="5" name="Railway - Cancel booking(failed)">
+    <classes>
+      <class name="CancelBooking">
+        <methods>
+          <include name="clean"/>
+          <include name="setup"/>
+          <include name="TC016"/>
+        </methods>
+      </class> <!-- CancelBooking -->
+    </classes>
+  </test> <!-- Railway - Cancel booking(failed) -->
 </suite> <!-- Failed suite [Suite] -->

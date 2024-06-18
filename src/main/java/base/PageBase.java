@@ -13,7 +13,19 @@ public class PageBase {
     public By xpath_MessageProblemAccount = By.xpath("//div[@id='content']/p[contains(@class, 'message error') and following-sibling::form]");
 
     public static void openRailway(){
-        DriverManagement.driver.get(Config.getProperty("railway.url"));
+        int retryCount = 5; // Số lần thử tải lại trang tối đa
+        int retry = 0;
+        while (retry < retryCount) {
+            try {
+                DriverManagement.driver.get(Config.getProperty("railway.url")); // Truy cập trang web
+                if (DriverManagement.driver.getTitle().contains("Safe Railway")) {
+                    break; // Trang đã tải xong, thoát khỏi vòng lặp
+                }
+            } catch (Exception e) {
+                throw new RuntimeException("Failed to load.");
+            }
+            retry++;
+        }
         RailwayWindow = DriverManagement.driver.getWindowHandle();
     }
 
