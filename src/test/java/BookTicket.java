@@ -20,7 +20,7 @@ public class BookTicket extends TestBase{
     User validUser = new User(validEmail, validPwd);
 
     @Test(description = "User can book 1 ticket at a time")
-    void TC012(){
+    void BookTicket(){
         loginPage.login(validUser);
 
         String departDate = DateUtils.nextDate(12);
@@ -56,7 +56,7 @@ public class BookTicket extends TestBase{
     }
 
     @Test(description = "User can book many tickets at a time")
-    void TC013(){
+    void BookTickets(){
         loginPage.login(validUser);
 
         String departDate = DateUtils.nextDate(25);
@@ -92,7 +92,7 @@ public class BookTicket extends TestBase{
     }
 
     @Test(description = "User can check price of ticket from Timetable")
-    void TC014(){
+    void CheckPrice(){
         String departStation = "Đà Nẵng";
         String arriveStation = "Sài Gòn";
         loginPage.login(validUser);
@@ -129,18 +129,19 @@ public class BookTicket extends TestBase{
     }
 
     @Test(description = "User can book ticket from Timetable")
-    void TC015(){
+    void BookTicketFromTimetable(){
         String departDate = DateUtils.nextDate(10);
         String departStation = "Quảng Ngãi";
         String arriveStation = "Huế";
         String ticketAmount = "5";
-        Ticket ticket = new Ticket(departDate, null, null, null, ticketAmount);
 
         loginPage.login(validUser);
 
         timeTablePage.bookTicket(departStation, arriveStation);
 
-        bookTicketsPage.bookTicket(ticket);
+        bookTicketsPage.selectValue("Date", departDate);
+        bookTicketsPage.selectValue("TicketAmount", ticketAmount);
+        bookTicketsPage.submitForm();
 
         String expectedResult = "Ticket booked successfully!";
         String actualResult = Action.getText(bookTicketsPage.message);

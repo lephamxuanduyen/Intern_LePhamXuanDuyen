@@ -11,6 +11,7 @@ public class PageBase {
 
     public By welcomeUserMessage = By.xpath("//div[@id='banner']//strong");
     public By messageProblemAccount = By.xpath("//div[@id='content']/p[contains(@class, 'message error') and following-sibling::form]");
+    public String paragraph = "//p[contains(text(),'%s')]";
 
     public static void openRailway(){
         int retryCount = 5; // Số lần thử tải lại trang tối đa

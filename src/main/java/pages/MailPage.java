@@ -29,12 +29,9 @@ public class MailPage extends PageBase {
 
     public void confirmAccount(String mailConfirm){
         DriverManagement.driver.navigate().refresh();
-        WebDriverWait wait = new WebDriverWait(DriverManagement.driver, Duration.ofSeconds(20));
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(String.format(emailConfirm,mailConfirm))));
-        Action.click(By.xpath(String.format(emailConfirm,mailConfirm)));
-        wait.until(ExpectedConditions.elementToBeClickable(linkConfirm));
+        DriverManagement.waitElementToBeClickable(By.xpath(String.format(emailConfirm,mailConfirm)), 20).click();
         Action.scrollY(200);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(linkConfirm)).click();
+        DriverManagement.waitElementToBeClickable(linkConfirm, 5).click();
     }
 
     public void deleteMail(String mailConfirm){

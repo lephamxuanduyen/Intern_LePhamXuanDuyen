@@ -11,7 +11,7 @@ public class ResetPwd extends TestBase{
     private MailPage mailPage = new MailPage();
 
     @Test(description = "Reset password shows error if the new password is same as current")
-    void TC010(){
+    void ResetPwd(){
         resetPasswordPage.selectTab("Login");
         resetPasswordPage.submitPwdResetForm(validEmail);
 
@@ -31,7 +31,7 @@ public class ResetPwd extends TestBase{
     }
 
     @Test(description = "Reset password shows error if the new password and confirm password doesn't match")
-    void TC011(){
+    void ResetPwdDoesNotMatch(){
         resetPasswordPage.selectTab("Login");
         resetPasswordPage.submitPwdResetForm(validEmail);
 

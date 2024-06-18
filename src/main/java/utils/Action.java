@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import pages.MailPage;
 
+import java.util.List;
 import java.util.Set;
 
 
@@ -39,22 +40,9 @@ public class Action {
         select.selectByVisibleText(valueOption);
     }
 
-    public static void verifyEleDisplay(By xpath){
-        try {
-            DriverManagement.driver.findElement(xpath).isDisplayed();
-            Assert.assertTrue(true);
-        } catch (NoSuchElementException e) {
-            Assert.fail("Element don\'t display.");
-        }
-    }
-
-    public static void verifyEleNoDiplay(By xpath){
-        try {
-            DriverManagement.driver.findElement(xpath).isDisplayed();
-            Assert.fail("Element exists");
-        } catch (NoSuchElementException e) {
-            Assert.assertTrue(e instanceof NoSuchElementException);
-        }
+    public static boolean isDisplay(By xpath){
+            List<WebElement> tabs = DriverManagement.driver.findElements(xpath);
+            return !tabs.isEmpty() && tabs.get(0).isDisplayed();
     }
 
     public static void switchOtherTab(MailPage mailPage, PageBase pageBase){

@@ -21,7 +21,7 @@ public class CancelBooking extends TestBase {
     User validUser = new User(validEmail, validPwd);
 
     @Test(description = "User can cancel a ticket")
-    void TC016(){
+    void CancelTicket(){
         loginPage.login(validUser);
         bookTicketsPage.selectTab("Book ticket");
         bookTicketsPage.bookTicket(ticket);

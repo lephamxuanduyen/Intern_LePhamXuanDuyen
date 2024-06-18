@@ -1,4 +1,5 @@
 import models.User;
+import org.testng.Assert;
 import utils.Action;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
@@ -16,7 +17,7 @@ public class Login extends TestBase{
     User UserNoActive = new User(noActiveEmail, validPwd);
 
     @Test(description = "User can log into Railway with valid username and password")
-    void TC001(){
+    void LoginWithValidInfo(){
         loginPage.login(validUser);
 
         String expectedResult = "Welcome " + validEmail;
@@ -24,7 +25,7 @@ public class Login extends TestBase{
     }
 
     @Test(description = "User cannot login with blank \"Username\" textbox")
-    void TC002(){
+    void LoginWithBlankEmail(){
         loginPage.login(UserBlankEmail);
 
         String expectedResult = "There was a problem with your login and/or errors exist in your form.";
@@ -33,7 +34,7 @@ public class Login extends TestBase{
     }
 
     @Test(description = "User cannot log into Railway with invalid password")
-    void TC003(){
+    void LoginWithInvalidPwd(){
         loginPage.login(UserInvalidPwd);
 
         String expectedResult = "There was a problem with your login and/or errors exist in your form.";
@@ -41,18 +42,20 @@ public class Login extends TestBase{
     }
 
     @Test(description = "System shows message when user enters wrong password many times")
-    void TC004(){
+    void LoginWithWrongPwdManyTime(){
         loginPage.login(UserInvalidPwd);
 
         String expectedResult = "Invalid username or password. Please try again.";
         loginPage.verifyErrorMes(expectedResult);
         loginPage.loopVerifyErrorMes(4, expectedResult);
 
-        Action.verifyEleDisplay(By.xpath("//p[contains(text(),'You have used 4 out of 5 login attempts. After all 5 have been used, you will be unable to login for 15 minutes.')]"));
+        String expectedMessage = "You have used 4 out of 5 login attempts. After all 5 have been used, you will be unable to login for 15 minutes.";
+        Boolean isDisplay = Action.isDisplay(By.xpath(String.format(loginPage.paragraph, expectedMessage)));
+        Assert.assertTrue(isDisplay);
     }
 
     @Test(description = "User can't login with an account hasn't been activated")
-    void TC005(){
+    void LoginWithInactiveEmail(){
         loginPage.login(UserNoActive);
 
         String expectedResult = "Invalid username or password. Please try again.";

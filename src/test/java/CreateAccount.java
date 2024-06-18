@@ -15,7 +15,7 @@ public class CreateAccount extends TestBase{
     private MailPage mailPage = new MailPage();
 
     @Test(description = "User can't create account with an already in-use email")
-    void TC007(){
+    void RegisterWithUsedEmail(){
         User user = new User(validEmail, validPwd, validPid);
         registerPage.register(user);
 
@@ -25,7 +25,7 @@ public class CreateAccount extends TestBase{
     }
 
     @Test(description = "User can't create account while password and PID fields are empty")
-    void TC008(){
+    void RegisterWithEmptyField(){
         MailPage mailPage = new MailPage();
         mailPage.openMailPage();
         String email = mailPage.getFreeMail();
@@ -39,7 +39,7 @@ public class CreateAccount extends TestBase{
         String expectedMesInvalidPwd = "Invalid password length.";
         String expectedMesInvalidPid = "Invalid ID length.";
 
-        String actualMesProblem = Action.getText(registerPage.xpath_MessageProblemAccount);
+        String actualMesProblem = Action.getText(registerPage.messageProblemAccount);
         String actualMesInvalidPwd = Action.getText(registerPage.messageInvalidPwd);
         String actualMesInvalidPid = Action.getText(registerPage.messageInvalidPid);
 
@@ -52,8 +52,8 @@ public class CreateAccount extends TestBase{
         softAssertions.assertAll();
     }
 
-    @Test(description = "User create and activate account")
-    void TC009(){
+    @Test(description = "User create and active account")
+    void RegisterWithActiveAccount(){
         mailPage.openMailPage();
         String thisEmail = mailPage.getFreeMail();
         User user = new User(thisEmail, validPwd, validPid);

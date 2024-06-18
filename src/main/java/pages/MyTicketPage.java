@@ -3,6 +3,7 @@ package pages;
 import base.PageBase;
 import models.Ticket;
 import org.openqa.selenium.By;
+import org.testng.Assert;
 import utils.DriverManagement;
 import utils.Action;
 
@@ -20,6 +21,7 @@ public class MyTicketPage extends PageBase {
 
     public void verifyTicketNoDisplay(Ticket ticket){
         By xpathCancelBtn = By.xpath(String.format(cancelBtn, ticket.getDepartStation(), ticket.getArriveStation(), ticket.getSeatType(), ticket.getDepartDate(), ticket.getTicketAmount()));
-        Action.verifyEleNoDiplay(xpathCancelBtn);
+        Boolean isDisplay = Action.isDisplay(xpathCancelBtn);
+        Assert.assertFalse(isDisplay);
     }
 }
