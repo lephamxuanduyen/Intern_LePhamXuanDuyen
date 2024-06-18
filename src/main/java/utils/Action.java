@@ -11,7 +11,7 @@ import pages.MailPage;
 import java.util.Set;
 
 
-public class SeleniumHelper {
+public class Action {
     public static void enter(By xpath, String context){
         DriverManagement.driver.findElement(xpath).sendKeys(context);
     }

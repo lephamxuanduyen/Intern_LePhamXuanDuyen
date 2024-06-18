@@ -4,7 +4,7 @@ import base.PageBase;
 import models.User;
 import org.openqa.selenium.By;
 import org.testng.Assert;
-import utils.SeleniumHelper;
+import utils.Action;
 
 public class LoginPage extends PageBase {
     By xpath_emailTxb = By.xpath("//form//input[@id='username']");
@@ -12,9 +12,9 @@ public class LoginPage extends PageBase {
     By xpath_loginBtn = By.xpath("//form//input[@type='submit']");
 
     public void submitLoginForm(User user){
-        SeleniumHelper.enter(xpath_emailTxb, user.getEmail());
-        SeleniumHelper.enter(xpath_pwdtxb, user.getPassword());
-        SeleniumHelper.click(xpath_loginBtn);
+        Action.enter(xpath_emailTxb, user.getEmail());
+        Action.enter(xpath_pwdtxb, user.getPassword());
+        Action.click(xpath_loginBtn);
     }
 
     public void login(User user){
@@ -23,7 +23,7 @@ public class LoginPage extends PageBase {
     }
 
     public void verifyErrorMes(String expectedResult){
-        String actualResult = SeleniumHelper.getText(xpath_MessageProblemAccount);
+        String actualResult = Action.getText(xpath_MessageProblemAccount);
         Assert.assertEquals(actualResult, expectedResult);
     }
 
@@ -34,7 +34,7 @@ public class LoginPage extends PageBase {
     }
 
     public void verifyWelcomeMes(String expectedResult){
-        String actualResult = SeleniumHelper.getText(xpath_WelcomeUserMessage);
+        String actualResult = Action.getText(xpath_WelcomeUserMessage);
 
         Assert.assertEquals(actualResult, expectedResult);
     }

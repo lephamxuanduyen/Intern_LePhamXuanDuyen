@@ -2,7 +2,7 @@ package pages;
 import base.PageBase;
 import models.User;
 import org.openqa.selenium.By;
-import utils.SeleniumHelper;
+import utils.Action;
 
 public class RegisterPage extends PageBase {
     By xpath_email = By.xpath("//form[@id='RegisterForm']//li//input[@id='email']");
@@ -15,11 +15,11 @@ public class RegisterPage extends PageBase {
     public By xpath_messageRegisterSucc = By.xpath("//div[@id='content']/p");
 
     public void submitRegisterForm(User user){
-        SeleniumHelper.enter(xpath_email, user.getEmail());
-        SeleniumHelper.enter(xpath_passwword, user.getPassword());
-        SeleniumHelper.enter(xpath_confirmPwd,user.getPassword());
-        SeleniumHelper.enter(xpath_pid, user.getPid());
-        SeleniumHelper.click(xpath_registerBtn);
+        Action.enter(xpath_email, user.getEmail());
+        Action.enter(xpath_passwword, user.getPassword());
+        Action.enter(xpath_confirmPwd,user.getPassword());
+        Action.enter(xpath_pid, user.getPid());
+        Action.click(xpath_registerBtn);
     }
 
     public void register(User user){

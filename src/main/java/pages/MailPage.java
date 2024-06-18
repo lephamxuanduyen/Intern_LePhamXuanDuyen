@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.DriverManagement;
-import utils.SeleniumHelper;
+import utils.Action;
 
 import java.time.Duration;
 
@@ -23,32 +23,32 @@ public class MailPage extends PageBase {
     By xpath_linkBackToInbox = By.xpath("//div[@class='email_page']//a[@id='back_to_inbox_link']");
 
     public String getFreeMail(){
-        SeleniumHelper.click(xpath_CbxScrambleAddress);
-        return SeleniumHelper.getText(xpath_Email);
+        Action.click(xpath_CbxScrambleAddress);
+        return Action.getText(xpath_Email);
     }
 
     public void confirmAccount(String mailConfirm){
         DriverManagement.driver.navigate().refresh();
         WebDriverWait wait = new WebDriverWait(DriverManagement.driver, Duration.ofSeconds(20));
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(String.format(xpath_emailConfirm,mailConfirm))));
-        SeleniumHelper.click(By.xpath(String.format(xpath_emailConfirm,mailConfirm)));
+        Action.click(By.xpath(String.format(xpath_emailConfirm,mailConfirm)));
         wait.until(ExpectedConditions.elementToBeClickable(xpath_linkConfirm));
-        SeleniumHelper.scroll(200);
+        Action.scroll(200);
         wait.until(ExpectedConditions.visibilityOfElementLocated(xpath_linkConfirm)).click();
     }
 
     public void deleteMail(String mailConfirm){
         switchToMailPage();
         DriverManagement.driver.navigate().refresh();
-        SeleniumHelper.click(xpath_linkBackToInbox);
-        SeleniumHelper.click(By.xpath(String.format(xpath_cbxMailConfirm, mailConfirm)));
-        SeleniumHelper.click(xpath_deleteMailBtn);
+        Action.click(xpath_linkBackToInbox);
+        Action.click(By.xpath(String.format(xpath_cbxMailConfirm, mailConfirm)));
+        Action.click(xpath_deleteMailBtn);
     }
 
     public void selectMailbox(String mailName, String mailDomain){
-        SeleniumHelper.select(xpath_mailDomain, mailDomain);
-        SeleniumHelper.click(xpath_mailName);
-        SeleniumHelper.enter(xpath_mailNameTxb, mailName);
-        SeleniumHelper.click(xpath_setBtn);
+        Action.select(xpath_mailDomain, mailDomain);
+        Action.click(xpath_mailName);
+        Action.enter(xpath_mailNameTxb, mailName);
+        Action.click(xpath_setBtn);
     }
 }

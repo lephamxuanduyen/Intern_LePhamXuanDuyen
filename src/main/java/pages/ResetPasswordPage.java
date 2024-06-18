@@ -2,7 +2,7 @@ package pages;
 
 import base.PageBase;
 import org.openqa.selenium.By;
-import utils.SeleniumHelper;
+import utils.Action;
 
 public class ResetPasswordPage extends PageBase {
     By xpath_resetPwdLink = By.xpath("//div[@id=\"content\"]//a[text()='Forgot Password page']");
@@ -17,17 +17,17 @@ public class ResetPasswordPage extends PageBase {
 
     public void submitPwdResetForm(String email){
         selectTab("Login");
-        SeleniumHelper.click(xpath_resetPwdLink);
+        Action.click(xpath_resetPwdLink);
 
-        SeleniumHelper.enter(xpath_mailTxb, email);
-        SeleniumHelper.scrollToElement(xpath_submitFormBtn);
-        SeleniumHelper.click(xpath_submitFormBtn);
+        Action.enter(xpath_mailTxb, email);
+        Action.scrollToElement(xpath_submitFormBtn);
+        Action.click(xpath_submitFormBtn);
     }
 
     public void resetPwd(String newPwd, String confirmPwd){
-        SeleniumHelper.enter(xpath_newPwdTxb, newPwd);
-        SeleniumHelper.enter(xpath_confirmPwdTxb, confirmPwd);
-        SeleniumHelper.scrollToElement(xpath_resetPwdBtn);
-        SeleniumHelper.click(xpath_resetPwdBtn);
+        Action.enter(xpath_newPwdTxb, newPwd);
+        Action.enter(xpath_confirmPwdTxb, confirmPwd);
+        Action.scrollToElement(xpath_resetPwdBtn);
+        Action.click(xpath_resetPwdBtn);
     }
 }

@@ -5,8 +5,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.MailPage;
 import pages.RegisterPage;
-import utils.DriverManagement;
-import utils.SeleniumHelper;
+import utils.Action;
 
 import java.util.Set;
 
@@ -21,7 +20,7 @@ public class CreateAccount extends TestBase{
         registerPage.register(user);
 
         String expectedResult = "This email address is already in use.";
-        String actualResult = SeleniumHelper.getText(registerPage.xpath_MessageProblemAccount);
+        String actualResult = Action.getText(registerPage.xpath_MessageProblemAccount);
         Assert.assertEquals(actualResult, expectedResult);
     }
 
@@ -40,9 +39,9 @@ public class CreateAccount extends TestBase{
         String expectedMesInvalidPwd = "Invalid password length.";
         String expectedMesInvalidPid = "Invalid ID length.";
 
-        String actualMesProblem = SeleniumHelper.getText(registerPage.xpath_MessageProblemAccount);
-        String actualMesInvalidPwd = SeleniumHelper.getText(registerPage.xpath_messageInvalidPwd);
-        String actualMesInvalidPid = SeleniumHelper.getText(registerPage.xpath_messageInvalidPid);
+        String actualMesProblem = Action.getText(registerPage.xpath_MessageProblemAccount);
+        String actualMesInvalidPwd = Action.getText(registerPage.xpath_messageInvalidPwd);
+        String actualMesInvalidPid = Action.getText(registerPage.xpath_messageInvalidPid);
 
         SoftAssert softAssertions = new SoftAssert();
 
@@ -65,9 +64,9 @@ public class CreateAccount extends TestBase{
         mailPage.confirmAccount(emailConfirmInstruction);
         mailPage.deleteMail(emailConfirmInstruction);
 
-        SeleniumHelper.switchOtherTab(mailPage, pageBase);
+        Action.switchOtherTab(mailPage, pageBase);
 
-        String actualResult = SeleniumHelper.getText(registerPage.xpath_messageRegisterSucc);
+        String actualResult = Action.getText(registerPage.xpath_messageRegisterSucc);
         String expextedResult = "Registration Confirmed! You can now log in to the site";
         Assert.assertEquals(actualResult, expextedResult);
     }

@@ -8,8 +8,8 @@ import pages.BookTicketsPage;
 import pages.LoginPage;
 import pages.TicketPricePage;
 import pages.TimeTablePage;
-import utils.Date;
-import utils.SeleniumHelper;
+import utils.DateUtils;
+import utils.Action;
 
 public class BookTicket extends TestBase{
     private LoginPage loginPage = new LoginPage();
@@ -23,7 +23,7 @@ public class BookTicket extends TestBase{
     void TC012(){
         loginPage.login(validUser);
 
-        String departDate = Date.nextDate(12);
+        String departDate = DateUtils.nextDate(12);
         String departStation = "Nha Trang";
         String arriveStation = "Huế";
         String seatType = "Soft bed with air conditioner";
@@ -34,7 +34,7 @@ public class BookTicket extends TestBase{
         bookTicketsPage.selectTab("Book ticket");
         bookTicketsPage.bookTicket(ticket);
 
-        String actualMes = SeleniumHelper.getText(bookTicketsPage.xpath_MesBookTicketSucc);
+        String actualMes = Action.getText(bookTicketsPage.xpath_MesBookTicketSucc);
         String expectedMes = "Ticket booked successfully!";
 
         SoftAssert softAssertions = new SoftAssert();
@@ -59,7 +59,7 @@ public class BookTicket extends TestBase{
     void TC013(){
         loginPage.login(validUser);
 
-        String departDate = Date.nextDate(25);
+        String departDate = DateUtils.nextDate(25);
         String departStation = "Nha Trang";
         String arriveStation = "Sài Gòn";
         String seatType = "Soft seat with air conditioner";
@@ -70,7 +70,7 @@ public class BookTicket extends TestBase{
         bookTicketsPage.selectTab("Book ticket");
         bookTicketsPage.bookTicket(ticket);
 
-        String actualMes = SeleniumHelper.getText(bookTicketsPage.xpath_MesBookTicketSucc);
+        String actualMes = Action.getText(bookTicketsPage.xpath_MesBookTicketSucc);
         String expectedMes = "Ticket booked successfully!";
 
         SoftAssert softAssertions = new SoftAssert();
@@ -98,8 +98,8 @@ public class BookTicket extends TestBase{
         loginPage.login(validUser);
         timeTablePage.checkTicket(departStation, arriveStation);
 
-        String actualHeaderTicketPrice = SeleniumHelper.getText(ticketPricePage.xpath_header);
-        String actualTableHeader = SeleniumHelper.getText(ticketPricePage.xpath_tableHeader);
+        String actualHeaderTicketPrice = Action.getText(ticketPricePage.xpath_header);
+        String actualTableHeader = Action.getText(ticketPricePage.xpath_tableHeader);
         String actualHSPrice = ticketPricePage.getPriceBySeatType("HS");
         String actualSSPrice = ticketPricePage.getPriceBySeatType("SS");
         String actualSSCPrice = ticketPricePage.getPriceBySeatType("SSC");
@@ -130,7 +130,7 @@ public class BookTicket extends TestBase{
 
     @Test(description = "User can book ticket from Timetable")
     void TC015(){
-        String departDate = Date.nextDate(10);
+        String departDate = DateUtils.nextDate(10);
         String departStation = "Quảng Ngãi";
         String arriveStation = "Huế";
         String ticketAmount = "5";
@@ -143,7 +143,7 @@ public class BookTicket extends TestBase{
         bookTicketsPage.bookTicket(ticket);
 
         String expectedResult = "Ticket booked successfully!";
-        String actualResult = SeleniumHelper.getText(bookTicketsPage.xpath_Message);
+        String actualResult = Action.getText(bookTicketsPage.xpath_Message);
 
         Assert.assertEquals(actualResult, expectedResult);
     }

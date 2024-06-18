@@ -1,22 +1,17 @@
 import models.Ticket;
 import models.User;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.BookTicketsPage;
 import pages.LoginPage;
 import pages.MyTicketPage;
-import utils.Date;
-import utils.DriverManagement;
-import utils.SeleniumHelper;
+import utils.DateUtils;
 
 public class CancelBooking extends TestBase {
     private LoginPage loginPage = new LoginPage();
     private BookTicketsPage bookTicketsPage = new BookTicketsPage();
     private MyTicketPage myTicketPage = new MyTicketPage();
 
-    String departDate = Date.nextDate(12);
+    String departDate = DateUtils.nextDate(12);
     String departStation = "Nha Trang";
     String arriveStation = "Huế";
     String seatType = "Soft bed with air conditioner";

@@ -1,5 +1,5 @@
 import models.User;
-import utils.SeleniumHelper;
+import utils.Action;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.LoginPage;
@@ -48,7 +48,7 @@ public class Login extends TestBase{
         loginPage.verifyErrorMes(expectedResult);
         loginPage.loopVerifyErrorMes(4, expectedResult);
 
-        SeleniumHelper.verifyEleDisplay(By.xpath("//p[contains(text(),'You have used 4 out of 5 login attempts. After all 5 have been used, you will be unable to login for 15 minutes.')]"));
+        Action.verifyEleDisplay(By.xpath("//p[contains(text(),'You have used 4 out of 5 login attempts. After all 5 have been used, you will be unable to login for 15 minutes.')]"));
     }
 
     @Test(description = "User can't login with an account hasn't been activated")

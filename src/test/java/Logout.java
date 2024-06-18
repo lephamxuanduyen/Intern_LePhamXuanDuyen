@@ -2,7 +2,7 @@ import models.User;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.LoginPage;
-import utils.SeleniumHelper;
+import utils.Action;
 
 public class Logout extends TestBase{
     private LoginPage loginPage = new LoginPage();
@@ -14,6 +14,6 @@ public class Logout extends TestBase{
         loginPage.login(validUser);
         loginPage.selectTab("Log out");
 
-        SeleniumHelper.verifyEleNoDiplay(By.xpath(String.format(loginPage.tabMenu, "Log out")));
+        Action.verifyEleNoDiplay(By.xpath(String.format(loginPage.tabMenu, "Log out")));
     }
 }

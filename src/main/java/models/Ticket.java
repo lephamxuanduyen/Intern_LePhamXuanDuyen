@@ -1,7 +1,5 @@
 package models;
 
-import utils.Date;
-
 public class Ticket {
     String departDate;
     String departStation;

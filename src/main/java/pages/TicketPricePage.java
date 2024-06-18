@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.DriverManagement;
-import utils.SeleniumHelper;
+import utils.Action;
 
 import java.time.Duration;
 
@@ -19,11 +19,11 @@ public class TicketPricePage extends PageBase {
     public void bookTicket(String seatType){
         WebDriverWait wait = new WebDriverWait(DriverManagement.driver, Duration.ofSeconds(20));
         WebElement btn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(String.format(xpath_bookTicketBtn, seatType))));
-        SeleniumHelper.scrollToElement(By.xpath(String.format(xpath_bookTicketBtn, seatType)));
+        Action.scrollToElement(By.xpath(String.format(xpath_bookTicketBtn, seatType)));
         btn.click();
     }
 
     public String getPriceBySeatType(String info){
-        return SeleniumHelper.getText(By.xpath(String.format(xpath_infoPriceBySeatType, info)));
+        return Action.getText(By.xpath(String.format(xpath_infoPriceBySeatType, info)));
     }
 }

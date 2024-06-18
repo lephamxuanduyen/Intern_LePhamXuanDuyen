@@ -3,7 +3,7 @@ package pages;
 import base.PageBase;
 import models.Ticket;
 import org.openqa.selenium.By;
-import utils.SeleniumHelper;
+import utils.Action;
 
 public class BookTicketsPage extends PageBase {
     By xpath_DepartDateTxb = By.xpath("//form//select[@name='Date']");
@@ -18,15 +18,15 @@ public class BookTicketsPage extends PageBase {
     public By xpath_MesBookTicketSucc = By.xpath("//div[@id='content']/h1");
 
     public void bookTicket(Ticket ticket){
-        if (ticket.getDepartDate()!=null) {SeleniumHelper.enter(xpath_DepartDateTxb, ticket.getDepartDate());}
-        if (ticket.getDepartStation()!=null) { SeleniumHelper.enter(xpath_DepartStationTxb, ticket.getDepartStation()); }
-        if (ticket.getSeatType()!=null) { SeleniumHelper.enter(xpath_seatTypeTxb, ticket.getSeatType()); }
-        if (ticket.getTicketAmount()!=null) { SeleniumHelper.select(xpath_ticketAmountTxb, ticket.getTicketAmount()); }
-        if (ticket.getArriveStation()!=null) { SeleniumHelper.enter(xpath_arriveStationTxb, ticket.getArriveStation()); }
-        SeleniumHelper.click(xpath_submitFormBtn);
+        if (ticket.getDepartDate()!=null) {Action.enter(xpath_DepartDateTxb, ticket.getDepartDate());}
+        if (ticket.getDepartStation()!=null) { Action.enter(xpath_DepartStationTxb, ticket.getDepartStation()); }
+        if (ticket.getSeatType()!=null) { Action.enter(xpath_seatTypeTxb, ticket.getSeatType()); }
+        if (ticket.getTicketAmount()!=null) { Action.select(xpath_ticketAmountTxb, ticket.getTicketAmount()); }
+        if (ticket.getArriveStation()!=null) { Action.enter(xpath_arriveStationTxb, ticket.getArriveStation()); }
+        Action.click(xpath_submitFormBtn);
     }
 
     public String getInfoBookTicketSucc(String info){
-        return SeleniumHelper.getText(By.xpath(String.format(xpath_infoBookTicketSucc, info)));
+        return Action.getText(By.xpath(String.format(xpath_infoBookTicketSucc, info)));
     }
 }
