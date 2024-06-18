@@ -5,18 +5,19 @@ import org.openqa.selenium.By;
 import utils.Action;
 
 public class TimeTablePage extends PageBase {
-    String xpath_checkPriceBtn = "//table//tr[td[text()='%s' and following-sibling::td[text()='%s']]]//a[(text()='check price')]";
-    String xpath_bookTicketBtn = "//table//tr[td[text()='%s' and following-sibling::td[text()='%s']]]//a[(text()='book ticket')]";
+    String Btn = "//table//tr[td[text()='%s' and following-sibling::td[text()='%s']]]//a[(text()='%s')]";
 
     public void checkTicket(String departStation, String arriveStation){
+        By checkPriceBtn = By.xpath(String.format(Btn, departStation, arriveStation, "check price"));
         selectTab("Timetable");
-        Action.scrollToElement(By.xpath(String.format(xpath_checkPriceBtn, departStation, arriveStation)));
-        Action.click(By.xpath(String.format(xpath_checkPriceBtn, departStation, arriveStation)));
+        Action.scrollToElement(checkPriceBtn);
+        Action.click(checkPriceBtn);
     }
 
     public void bookTicket(String departStation, String arriveStation){
+        By bookTicketBtn = By.xpath(String.format(Btn, departStation, arriveStation, "book ticket"));
         selectTab("Timetable");
-        Action.scrollToElement(By.xpath(String.format(xpath_bookTicketBtn, departStation, arriveStation)));
-        Action.click(By.xpath(String.format(xpath_bookTicketBtn, departStation, arriveStation)));
+        Action.scrollToElement(bookTicketBtn);
+        Action.click(bookTicketBtn);
     }
 }

@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import pages.MailPage;
 
@@ -25,22 +26,17 @@ public class Action {
         ((JavascriptExecutor) DriverManagement.driver).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
-    public static void scroll(int lenght){
-        ((JavascriptExecutor) DriverManagement.driver).executeScript("window.scrollBy(0, " + lenght + ");"); // Scroll half the screen height
+    public static void scrollY(int y){
+        ((JavascriptExecutor) DriverManagement.driver).executeScript("window.scrollBy(0, " + y + ");"); // Scroll down y px
     }
 
     public static String getText(By xpath){
         return DriverManagement.driver.findElement(xpath).getText();
     }
 
-    public static void select(By XpathSelect, String valueOption){
-        String strXpathSelect = XpathSelect.toString().replaceFirst("By.xpath: ", "");
-        String strXpathOption = strXpathSelect + "/option[text()='" + valueOption + "']";
-        By xpath_option = By.xpath(strXpathOption);
-
-        scrollToElement(XpathSelect);
-        click(XpathSelect);
-        click(xpath_option);
+    public static void select(By xpathSelect, String valueOption){
+        Select select = new Select(DriverManagement.driver.findElement(xpathSelect));
+        select.selectByVisibleText(valueOption);
     }
 
     public static void verifyEleDisplay(By xpath){

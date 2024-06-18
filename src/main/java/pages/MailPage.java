@@ -33,7 +33,7 @@ public class MailPage extends PageBase {
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(String.format(emailConfirm,mailConfirm))));
         Action.click(By.xpath(String.format(emailConfirm,mailConfirm)));
         wait.until(ExpectedConditions.elementToBeClickable(linkConfirm));
-        Action.scroll(200);
+        Action.scrollY(200);
         wait.until(ExpectedConditions.visibilityOfElementLocated(linkConfirm)).click();
     }
 

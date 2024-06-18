@@ -10,7 +10,7 @@ public class BookTicketsPage extends PageBase {
     By departStationTxb = By.xpath("//select[@name='DepartStation']");
     By arriveStationTxb = By.xpath("//select[@name='ArriveStation']");
     By seatTypeTxb = By.xpath("//select[@name='SeatType']");
-    By ticketAmountTxb = By.xpath("//select[@name='TicketAmount']");
+    By ticketAmountSelect = By.xpath("//select[@name='TicketAmount']");
     By submitFormBtn = By.xpath("//input[@type='submit']");
     String infoBookTicketSucc = "//table//td[count(//th[text()='%s']/preceding-sibling::th) + 1]";
     public By message = By.xpath("//div[@id='content']/h1");
@@ -20,7 +20,7 @@ public class BookTicketsPage extends PageBase {
         if (ticket.getDepartDate()!=null) {Action.enter(departDateTxb, ticket.getDepartDate());}
         if (ticket.getDepartStation()!=null) { Action.enter(departStationTxb, ticket.getDepartStation()); }
         if (ticket.getSeatType()!=null) { Action.enter(seatTypeTxb, ticket.getSeatType()); }
-        if (ticket.getTicketAmount()!=null) { Action.select(ticketAmountTxb, ticket.getTicketAmount()); }
+        if (ticket.getTicketAmount()!=null) { Action.select(ticketAmountSelect, ticket.getTicketAmount()); }
         if (ticket.getArriveStation()!=null) { Action.enter(arriveStationTxb, ticket.getArriveStation()); }
         Action.click(submitFormBtn);
     }
