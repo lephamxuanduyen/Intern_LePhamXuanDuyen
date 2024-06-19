@@ -1,6 +1,7 @@
 package pages;
 
 import base.PageBase;
+import enums.TabName;
 import models.Ticket;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -12,7 +13,7 @@ public class MyTicketPage extends PageBase {
 
     public void CancelTicket(Ticket ticket){
         By xpathCancelBtn = By.xpath(String.format(cancelBtn, ticket.getDepartStation(), ticket.getArriveStation(), ticket.getSeatType(), ticket.getDepartDate(), ticket.getTicketAmount()));
-        selectTab("My ticket");
+        selectTab(TabName.MYTICKET);
         Action.scrollToElement(xpathCancelBtn);
         Action.click(xpathCancelBtn);
 

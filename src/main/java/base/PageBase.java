@@ -1,5 +1,6 @@
 package base;
 
+import enums.TabName;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WindowType;
 import utils.DriverManagement;
@@ -44,7 +45,7 @@ public class PageBase {
         DriverManagement.driver.switchTo().window(tempMailWindow);
     }
 
-    public static void selectTab(String tabname){
-        DriverManagement.driver.findElement(By.xpath(String.format(tabMenu, tabname))).click();
+    public static void selectTab(TabName tabname){
+        DriverManagement.driver.findElement(By.xpath(String.format(tabMenu, tabname.getTabNameValue()))).click();
     }
 }

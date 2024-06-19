@@ -1,5 +1,6 @@
 package pages;
 import base.PageBase;
+import enums.TabName;
 import models.User;
 import org.openqa.selenium.By;
 import utils.Action;
@@ -23,7 +24,7 @@ public class RegisterPage extends PageBase {
     }
 
     public void register(User user){
-        selectTab("Register");
+        selectTab(TabName.REGISTER);
         submitRegisterForm(user);
     }
 }

@@ -1,13 +1,16 @@
 package models;
 
+import enums.SeatType;
+import enums.Station;
+
 public class Ticket {
     String departDate;
-    String departStation;
-    String arriveStation;
-    String seatType;
+    Station departStation;
+    Station arriveStation;
+    SeatType seatType;
     String ticketAmount;
 
-    public Ticket(String departDate, String departStation, String arriveStation, String seatType, String ticketAmount) {
+    public Ticket(String departDate, Station departStation, Station arriveStation, SeatType seatType, String ticketAmount) {
         this.departDate = departDate;
         this.departStation = departStation;
         this.arriveStation = arriveStation;
@@ -19,15 +22,15 @@ public class Ticket {
         return departDate;
     }
 
-    public String getDepartStation() {
+    public Station getDepartStation() {
         return departStation;
     }
 
-    public String getArriveStation() {
+    public Station getArriveStation() {
         return arriveStation;
     }
 
-    public String getSeatType() {
+    public SeatType getSeatType() {
         return seatType;
     }
 

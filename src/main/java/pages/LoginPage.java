@@ -1,6 +1,7 @@
 package pages;
 
 import base.PageBase;
+import enums.TabName;
 import models.User;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -18,7 +19,7 @@ public class LoginPage extends PageBase {
     }
 
     public void login(User user){
-        selectTab("Login");
+        selectTab(TabName.LOGIN);
         submitLoginForm(user);
     }
 

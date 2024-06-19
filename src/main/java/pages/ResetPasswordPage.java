@@ -1,6 +1,7 @@
 package pages;
 
 import base.PageBase;
+import enums.TabName;
 import org.openqa.selenium.By;
 import utils.Action;
 
@@ -16,7 +17,7 @@ public class ResetPasswordPage extends PageBase {
     public By resetTokenTxb = By.xpath("//div[@id='content']//form//input[@id='resetToken']");
 
     public void submitPwdResetForm(String email){
-        selectTab("Login");
+        selectTab(TabName.LOGIN);
         Action.click(resetPwdLink);
 
         Action.enter(mailTxb, email);

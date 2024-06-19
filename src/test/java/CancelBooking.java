@@ -1,3 +1,6 @@
+import enums.SeatType;
+import enums.Station;
+import enums.TabName;
 import models.Ticket;
 import models.User;
 import org.testng.annotations.Test;
@@ -12,9 +15,9 @@ public class CancelBooking extends TestBase {
     private MyTicketPage myTicketPage = new MyTicketPage();
 
     String departDate = DateUtils.nextDate(12);
-    String departStation = "Nha Trang";
-    String arriveStation = "Huế";
-    String seatType = "Soft bed with air conditioner";
+    Station departStation = Station.NHATRANG;
+    Station arriveStation = Station.HUE;
+    SeatType seatType = SeatType.SSC;
     String ticketAmount = "1";
     Ticket ticket = new Ticket(departDate,departStation, arriveStation, seatType, ticketAmount);
 
@@ -23,7 +26,7 @@ public class CancelBooking extends TestBase {
     @Test(description = "User can cancel a ticket")
     void CancelTicket(){
         loginPage.login(validUser);
-        bookTicketsPage.selectTab("Book ticket");
+        bookTicketsPage.selectTab(TabName.BOOKTICKET);
         bookTicketsPage.bookTicket(ticket);
 
         myTicketPage.CancelTicket(ticket);

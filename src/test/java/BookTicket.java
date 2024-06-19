@@ -1,4 +1,7 @@
 
+import enums.SeatType;
+import enums.Station;
+import enums.TabName;
 import models.Ticket;
 import models.User;
 import org.testng.Assert;
@@ -24,70 +27,44 @@ public class BookTicket extends TestBase{
         loginPage.login(validUser);
 
         String departDate = DateUtils.nextDate(12);
-        String departStation = "Nha Trang";
-        String arriveStation = "Huế";
-        String seatType = "Soft bed with air conditioner";
+        Station departStation = Station.NHATRANG;
+        Station arriveStation = Station.HUE;
+        SeatType seatType = SeatType.SBC;
         String ticketAmount = "1";
 
         Ticket ticket = new Ticket(departDate, departStation, arriveStation, seatType, ticketAmount);
 
-        bookTicketsPage.selectTab("Book ticket");
+        bookTicketsPage.selectTab(TabName.BOOKTICKET);
         bookTicketsPage.bookTicket(ticket);
 
-        String actualMes = Action.getText(bookTicketsPage.mesBookTicketSucc);
         String expectedMes = "Ticket booked successfully!";
 
         SoftAssert softAssertions = new SoftAssert();
-        softAssertions.assertEquals(actualMes, expectedMes);
-
-        String actualDepartDate = bookTicketsPage.getInfoBookTicketSucc("Depart Date");
-        String actualDepartStation = bookTicketsPage.getInfoBookTicketSucc("Depart Station");
-        String actualArriveStaion = bookTicketsPage.getInfoBookTicketSucc("Arrive Station");
-        String actualSeatType = bookTicketsPage.getInfoBookTicketSucc("Seat Type");
-        String actualAmount = bookTicketsPage.getInfoBookTicketSucc("Amount");
-
-        softAssertions.assertEquals(actualDepartDate, departDate);
-        softAssertions.assertEquals(actualDepartStation, departStation);
-        softAssertions.assertEquals(actualArriveStaion, arriveStation);
-        softAssertions.assertEquals(actualSeatType, seatType);
-        softAssertions.assertEquals(actualAmount, ticketAmount);
-
+        bookTicketsPage.verifyMesBookSuc(softAssertions, expectedMes);
+        bookTicketsPage.verifyInfoTicket(softAssertions, ticket);
         softAssertions.assertAll();
     }
 
     @Test(description = "User can book many tickets at a time")
-    void BookTickets(){
+    void BookManyTickets(){
         loginPage.login(validUser);
 
         String departDate = DateUtils.nextDate(25);
-        String departStation = "Nha Trang";
-        String arriveStation = "Sài Gòn";
-        String seatType = "Soft seat with air conditioner";
+        Station departStation = Station.NHATRANG;
+        Station arriveStation = Station.SAIGON;
+        SeatType seatType = SeatType.SSC;
         String ticketAmount = "5";
         Ticket ticket = new Ticket(departDate, departStation, arriveStation, seatType, ticketAmount);
 
 
-        bookTicketsPage.selectTab("Book ticket");
+        bookTicketsPage.selectTab(TabName.BOOKTICKET);
         bookTicketsPage.bookTicket(ticket);
 
-        String actualMes = Action.getText(bookTicketsPage.mesBookTicketSucc);
         String expectedMes = "Ticket booked successfully!";
 
         SoftAssert softAssertions = new SoftAssert();
-        softAssertions.assertEquals(actualMes, expectedMes);
-
-        String actualDepartDate = bookTicketsPage.getInfoBookTicketSucc("Depart Date");
-        String actualDepartStation = bookTicketsPage.getInfoBookTicketSucc("Depart Station");
-        String actualArriveStaion = bookTicketsPage.getInfoBookTicketSucc("Arrive Station");
-        String actualSeatType = bookTicketsPage.getInfoBookTicketSucc("Seat Type");
-        String actualAmount = bookTicketsPage.getInfoBookTicketSucc("Amount");
-
-        softAssertions.assertEquals(actualDepartDate, departDate);
-        softAssertions.assertEquals(actualDepartStation, departStation);
-        softAssertions.assertEquals(actualArriveStaion, arriveStation);
-        softAssertions.assertEquals(actualSeatType, seatType);
-        softAssertions.assertEquals(actualAmount, ticketAmount);
-
+        bookTicketsPage.verifyMesBookSuc(softAssertions, expectedMes);
+        bookTicketsPage.verifyInfoTicket(softAssertions, ticket);
         softAssertions.assertAll();
     }
 

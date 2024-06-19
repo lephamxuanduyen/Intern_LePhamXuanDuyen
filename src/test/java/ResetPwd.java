@@ -1,4 +1,5 @@
 import base.PageBase;
+import enums.TabName;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.MailPage;
@@ -12,7 +13,7 @@ public class ResetPwd extends TestBase{
 
     @Test(description = "Reset password shows error if the new password is same as current")
     void ResetPwd(){
-        resetPasswordPage.selectTab("Login");
+        resetPasswordPage.selectTab(TabName.LOGIN);
         resetPasswordPage.submitPwdResetForm(validEmail);
 
         mailPage.openMailPage();
@@ -32,7 +33,7 @@ public class ResetPwd extends TestBase{
 
     @Test(description = "Reset password shows error if the new password and confirm password doesn't match")
     void ResetPwdDoesNotMatch(){
-        resetPasswordPage.selectTab("Login");
+        resetPasswordPage.selectTab(TabName.LOGIN);
         resetPasswordPage.submitPwdResetForm(validEmail);
 
         mailPage.openMailPage();
