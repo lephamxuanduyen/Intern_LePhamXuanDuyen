@@ -4,7 +4,6 @@ import base.PageBase;
 import models.Ticket;
 import org.openqa.selenium.By;
 import utils.Action;
-import utils.DriverManagement;
 
 public class BookTicketsPage extends PageBase {
     String txb = "//select[@name='%s']";
