@@ -1,12 +1,9 @@
 
 import base.DataSets;
-import enums.SeatType;
-import enums.Station;
 import enums.TabName;
 import models.Ticket;
 import models.User;
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.BookTicketsPage;
