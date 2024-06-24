@@ -29,6 +29,11 @@ public class DriverManagement {
                 DriverManagement.driver = new FirefoxDriver();
                 break;
             }
+            default:{
+                WebDriverManager.chromedriver().setup();
+                DriverManagement.driver = new ChromeDriver();
+                break;
+            }
         }
         DriverManagement.driver.manage().window().maximize();
         PageBase.openRailway();

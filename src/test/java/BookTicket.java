@@ -1,10 +1,12 @@
 
+import base.DataSets;
 import enums.SeatType;
 import enums.Station;
 import enums.TabName;
 import models.Ticket;
 import models.User;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.BookTicketsPage;
@@ -22,17 +24,9 @@ public class BookTicket extends TestBase{
 
     User validUser = new User(validEmail, validPwd);
 
-    @Test(description = "User can book 1 ticket at a time")
-    void BookTicket(){
+    @Test(description = "User can book 1 ticket at a time", dataProvider = "TicketDataProvider", dataProviderClass = DataSets.class)
+    void BookTicket(Ticket ticket){
         loginPage.login(validUser);
-
-        String departDate = DateUtils.nextDate(12);
-        Station departStation = Station.NHATRANG;
-        Station arriveStation = Station.HUE;
-        SeatType seatType = SeatType.SBC;
-        String ticketAmount = "1";
-
-        Ticket ticket = new Ticket(departDate, departStation, arriveStation, seatType, ticketAmount);
 
         bookTicketsPage.selectTab(TabName.BOOKTICKET);
         bookTicketsPage.bookTicket(ticket);
@@ -45,26 +39,18 @@ public class BookTicket extends TestBase{
         softAssertions.assertAll();
     }
 
-    @Test(description = "User can book many tickets at a time")
-    void BookManyTickets(){
+    @Test(description = "User can book many tickets at a time", dataProvider = "TicketsDataProvider", dataProviderClass = DataSets.class)
+    void BookManyTickets(Ticket tickets){
         loginPage.login(validUser);
 
-        String departDate = DateUtils.nextDate(25);
-        Station departStation = Station.NHATRANG;
-        Station arriveStation = Station.SAIGON;
-        SeatType seatType = SeatType.SSC;
-        String ticketAmount = "5";
-        Ticket ticket = new Ticket(departDate, departStation, arriveStation, seatType, ticketAmount);
-
-
         bookTicketsPage.selectTab(TabName.BOOKTICKET);
-        bookTicketsPage.bookTicket(ticket);
+        bookTicketsPage.bookTicket(tickets);
 
         String expectedMes = "Ticket booked successfully!";
 
         SoftAssert softAssertions = new SoftAssert();
         bookTicketsPage.verifyMesBookSuc(softAssertions, expectedMes);
-        bookTicketsPage.verifyInfoTicket(softAssertions, ticket);
+        bookTicketsPage.verifyInfoTicket(softAssertions, tickets);
         softAssertions.assertAll();
     }
 
