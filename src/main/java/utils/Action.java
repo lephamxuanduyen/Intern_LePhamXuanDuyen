@@ -17,6 +17,7 @@ public class Action {
     }
 
     public static void click(By xpath){
+        scrollToElement(xpath);
         DriverManagement.driver.findElement(xpath).click();
     }
 
@@ -34,6 +35,7 @@ public class Action {
     }
 
     public static void select(By xpathSelect, String valueOption){
+        scrollToElement(xpathSelect);
         Select select = new Select(DriverManagement.driver.findElement(xpathSelect));
         select.selectByVisibleText(valueOption);
     }
