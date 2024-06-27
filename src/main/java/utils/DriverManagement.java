@@ -1,7 +1,8 @@
 package utils;
 
-import base.Config;
+import base.ReadConfig;
 import base.PageBase;
+import com.beust.jcommander.Parameter;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -14,37 +15,36 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class DriverManagement {
-    public static WebDriver driver;
+    public static ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
 
-    public static void Setup(){
-        String browser = Config.getProperty("browser").toLowerCase();
-        switch (browser){
-            case "chrome":{
+    public static void setup() {
+        String browser = ReadConfig.getProperty("browser").toLowerCase();
+        switch (browser) {
+            case "chrome": {
                 WebDriverManager.chromedriver().setup();
-                DriverManagement.driver = new ChromeDriver();
-                break;
+                driver.set(new ChromeDriver());
             }
-            case "firefox":{
+            case "firefox": {
                 WebDriverManager.firefoxdriver().setup();
-                DriverManagement.driver = new FirefoxDriver();
+                driver.set(new FirefoxDriver());
                 break;
             }
-            default:{
+            default: {
                 WebDriverManager.chromedriver().setup();
-                DriverManagement.driver = new ChromeDriver();
+                driver.set(new ChromeDriver());
                 break;
             }
         }
-        DriverManagement.driver.manage().window().maximize();
+        DriverManagement.driver.get().manage().window().maximize();
         PageBase.openRailway();
     }
 
-    public static void quitBrowser(){
-        DriverManagement.driver.quit();
+    public static void quitBrowser() {
+        DriverManagement.driver.get().quit();
     }
 
-    public static WebElement waitElementToBeClickable(By xpath, int second){
-        WebDriverWait wait = new WebDriverWait(DriverManagement.driver, Duration.ofSeconds(second));
+    public static WebElement waitElementToBeClickable(By xpath, int second) {
+        WebDriverWait wait = new WebDriverWait(DriverManagement.driver.get(), Duration.ofSeconds(second));
         return wait.until(ExpectedConditions.elementToBeClickable(xpath));
     }
 }

@@ -1,8 +1,10 @@
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import utils.DriverManagement;
 
-public class TestBase{
+public class TestBase {
 //    public static String validEmail = "ihqmosdc@sharklasers.com";
 //    protected static String mailName = "ihqmosdc";
 //    protected static String mailDomain = "sharklasers.com";
@@ -15,12 +17,12 @@ public class TestBase{
 
 
     @BeforeMethod
-    void setup(){
-        DriverManagement.Setup();
+    void setup() {
+        DriverManagement.setup();
     }
 
     @AfterMethod
-    void clean(){
+    void clean() {
         DriverManagement.quitBrowser();
     }
 }

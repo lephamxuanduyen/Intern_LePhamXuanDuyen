@@ -1,9 +1,12 @@
 # Test Website Railway by Selenium + Maven + TestNG
+
 <hr/>
 
-This project contains automated tests for the Railway System using Selenium WebDriver with Java. Website for book train ticket.
+This project contains automated tests for the Railway System using Selenium WebDriver with Java. Website for book train
+ticket.
 
 ## Setup Instructions
+
 <hr/>
 
 ### Prerequisites
@@ -37,7 +40,8 @@ $ mvn -Dtest=Login#Login*+email* test
 
 ```
 
-You can run test in different browsers without code change. Example: 
+You can run test in different browsers without code change. Example:
+
 ```
 # Run all the unit test classes.
 $ mvn -Dbrowser=chrome -Dtest=Logout#Logout clean test

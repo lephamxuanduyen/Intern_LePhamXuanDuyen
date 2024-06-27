@@ -16,7 +16,7 @@ public class ResetPasswordPage extends PageBase {
     public By mesErrorConfirmPwd = By.xpath("//div[@id='content']//label[preceding-sibling::input[@id='confirmPassword']]");
     public By resetTokenTxb = By.xpath("//div[@id='content']//form//input[@id='resetToken']");
 
-    public void submitPwdResetForm(String email){
+    public void submitPwdResetForm(String email) {
         selectTab(TabName.LOGIN);
         Action.click(resetPwdLink);
 
@@ -25,7 +25,7 @@ public class ResetPasswordPage extends PageBase {
         Action.click(submitFormBtn);
     }
 
-    public void resetPwd(String newPwd, String confirmPwd){
+    public void resetPwd(String newPwd, String confirmPwd) {
         Action.enter(newPwdTxb, newPwd);
         Action.enter(confirmPwdTxb, confirmPwd);
         Action.scrollToElement(resetPwdBtn);

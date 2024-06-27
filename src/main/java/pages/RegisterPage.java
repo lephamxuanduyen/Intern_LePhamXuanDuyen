@@ -1,4 +1,5 @@
 package pages;
+
 import base.PageBase;
 import enums.TabName;
 import models.User;
@@ -15,15 +16,15 @@ public class RegisterPage extends PageBase {
     public By messageInvalidPid = By.xpath("//form//label[preceding-sibling::input[@id='pid']]");
     public By messageRegisterSucc = By.xpath("//div[@id='content']/p");
 
-    public void submitRegisterForm(User user){
+    public void submitRegisterForm(User user) {
         Action.enter(emailTxb, user.getEmail());
         Action.enter(passwwordTxb, user.getPassword());
-        Action.enter(confirmPwdTxb,user.getPassword());
+        Action.enter(confirmPwdTxb, user.getPassword());
         Action.enter(pidTxb, user.getPid());
         Action.click(registerBtn);
     }
 
-    public void register(User user){
+    public void register(User user) {
         selectTab(TabName.REGISTER);
         submitRegisterForm(user);
     }

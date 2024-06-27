@@ -9,13 +9,13 @@ import utils.Action;
 
 import java.util.Set;
 
-public class CreateAccount extends TestBase{
+public class CreateAccount extends TestBase {
     private PageBase pageBase = new PageBase();
     private RegisterPage registerPage = new RegisterPage();
     private MailPage mailPage = new MailPage();
 
     @Test(description = "User can't create account with an already in-use email")
-    void RegisterWithUsedEmail(){
+    void RegisterWithUsedEmail() {
         User user = new User(validEmail, validPwd, validPid);
         registerPage.register(user);
 
@@ -25,7 +25,7 @@ public class CreateAccount extends TestBase{
     }
 
     @Test(description = "User can't create account while password and PID fields are empty")
-    void RegisterWithEmptyField(){
+    void RegisterWithEmptyField() {
         MailPage mailPage = new MailPage();
         mailPage.openMailPage();
         String email = mailPage.getFreeMail();
@@ -53,7 +53,7 @@ public class CreateAccount extends TestBase{
     }
 
     @Test(description = "User create and active account")
-    void RegisterWithActiveAccount(){
+    void RegisterWithActiveAccount() {
         mailPage.openMailPage();
         String thisEmail = mailPage.getFreeMail();
         User user = new User(thisEmail, validPwd, validPid);

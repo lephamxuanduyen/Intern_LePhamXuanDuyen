@@ -1,9 +1,12 @@
 
 import base.DataSets;
+import enums.SeatType;
+import enums.Station;
 import enums.TabName;
 import models.Ticket;
 import models.User;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.BookTicketsPage;
@@ -12,8 +15,10 @@ import pages.TicketPricePage;
 import pages.TimeTablePage;
 import utils.DateUtils;
 import utils.Action;
+import utils.listeners.ReportListener;
 
-public class BookTicket extends TestBase{
+@Listeners(ReportListener.class)
+public class BookTicket extends TestBase {
     private LoginPage loginPage = new LoginPage();
     private BookTicketsPage bookTicketsPage = new BookTicketsPage();
     private TimeTablePage timeTablePage = new TimeTablePage();
@@ -22,7 +27,7 @@ public class BookTicket extends TestBase{
     User validUser = new User(validEmail, validPwd);
 
     @Test(description = "User can book 1 ticket at a time", dataProvider = "TicketDataProvider", dataProviderClass = DataSets.class)
-    void BookTicket(Ticket ticket){
+    void BookTicket(Ticket ticket) {
         loginPage.login(validUser);
 
         bookTicketsPage.selectTab(TabName.BOOKTICKET);
@@ -37,7 +42,7 @@ public class BookTicket extends TestBase{
     }
 
     @Test(description = "User can book many tickets at a time", dataProvider = "TicketsDataProvider", dataProviderClass = DataSets.class)
-    void BookManyTickets(Ticket tickets){
+    void BookManyTickets(Ticket tickets) {
         loginPage.login(validUser);
 
         bookTicketsPage.selectTab(TabName.BOOKTICKET);
@@ -52,20 +57,20 @@ public class BookTicket extends TestBase{
     }
 
     @Test(description = "User can check price of ticket from Timetable")
-    void CheckPrice(){
-        String departStation = "Đà Nẵng";
-        String arriveStation = "Sài Gòn";
+    void CheckPrice() {
+        Station departStation = Station.DANANG;
+        Station arriveStation = Station.SAIGON;
         loginPage.login(validUser);
         timeTablePage.checkTicket(departStation, arriveStation);
 
         String actualHeaderTicketPrice = Action.getText(ticketPricePage.header);
         String actualTableHeader = Action.getText(ticketPricePage.tableHeader);
-        String actualHSPrice = ticketPricePage.getPriceBySeatType("HS");
-        String actualSSPrice = ticketPricePage.getPriceBySeatType("SS");
-        String actualSSCPrice = ticketPricePage.getPriceBySeatType("SSC");
-        String actualHBPrice = ticketPricePage.getPriceBySeatType("HB");
-        String actualSBPrice = ticketPricePage.getPriceBySeatType("SB");
-        String actualSBCPrice = ticketPricePage.getPriceBySeatType("SBC");
+        String actualHSPrice = ticketPricePage.getPriceBySeatType(SeatType.HS);
+        String actualSSPrice = ticketPricePage.getPriceBySeatType(SeatType.SS);
+        String actualSSCPrice = ticketPricePage.getPriceBySeatType(SeatType.SSC);
+        String actualHBPrice = ticketPricePage.getPriceBySeatType(SeatType.HB);
+        String actualSBPrice = ticketPricePage.getPriceBySeatType(SeatType.SB);
+        String actualSBCPrice = ticketPricePage.getPriceBySeatType(SeatType.SBC);
 
         String expectedHeaderTicketPrice = "Ticket Price";
         String expectTableHeader = "Ticket price from Đà Nẵng to Sài Gòn";
@@ -89,7 +94,7 @@ public class BookTicket extends TestBase{
     }
 
     @Test(description = "User can book ticket from Timetable")
-    void BookTicketFromTimetable(){
+    void BookTicketFromTimetable() {
         String departDate = DateUtils.nextDate(10);
         String departStation = "Quảng Ngãi";
         String arriveStation = "Huế";

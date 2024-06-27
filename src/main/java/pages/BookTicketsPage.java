@@ -12,34 +12,56 @@ public class BookTicketsPage extends PageBase {
     String infoBookTicketSucc = "//table//td[count(//th[text()='%s']/preceding-sibling::th) + 1]";
     public By message = By.xpath("//div[@id='content']/h1");
     public By mesBookTicketSucc = By.xpath("//div[@id='content']/h1");
+    String total = "//table[@class='MyTable']//tr[td[text()='%s' and following-sibling::td[text()='%s' and following-sibling::td[text()='%s' and following-sibling::td[text()='%s' and following-sibling::td[text()='%s']]]]]]//td[count(//tr/th[text()='Total Price']/preceding-sibling::th)+1]";
 
-    public void bookTicket(Ticket ticket){
-        selectValue("DepartStation", ticket.getDepartStation().getStationValue());
-        selectValue("Date", ticket.getDepartDate());
-        selectValue("SeatType", ticket.getSeatType().getSeatTypeValue());
-        selectValue("TicketAmount", ticket.getTicketAmount());
-        selectValue("ArriveStation", ticket.getArriveStation().getStationValue());
+
+    public void bookTicket(Ticket ticket) {
+        selectDepartStation(ticket.getDepartStation().getStationValue());
+        selectDepartDate(ticket.getDepartDate());
+        selectSeatType(ticket.getSeatType().getSeatTypeValue());
+        selectTicketAmount(ticket.getTicketAmount());
+        selectArriveStation(ticket.getArriveStation().getStationValue());
         submitForm();
     }
 
-    public void selectValue(String field, String value){
+    public void selectDepartStation(String station){
+        selectValue("DepartStation", station);
+    }
+
+    public void selectDepartDate(String date){
+            selectValue("Date", date);
+    }
+
+    public void selectSeatType(String seatype){
+            selectValue("SeatType", seatype);
+    }
+
+    public void selectTicketAmount(String amount){
+            selectValue("TicketAmount", amount);
+    }
+
+    public void selectArriveStation(String station){
+            selectValue("ArriveStation", station);
+    }
+
+    public void selectValue(String field, String value) {
         Action.select(By.xpath(String.format(txb, field)), value);
     }
 
-    public void submitForm(){
+    public void submitForm() {
         Action.click(submitFormBtn);
     }
 
-    public String getInfoBookTicketSucc(String info){
+    public String getInfoBookTicketSucc(String info) {
         return Action.getText(By.xpath(String.format(infoBookTicketSucc, info)));
     }
 
-    public void verifyMesBookSuc(SoftAssert softAssertions, String expectedMes){
+    public void verifyMesBookSuc(SoftAssert softAssertions, String expectedMes) {
         String actualMes = Action.getText(mesBookTicketSucc);
         softAssertions.assertEquals(actualMes, expectedMes);
     }
 
-    public void verifyInfoTicket(SoftAssert softAssertions, Ticket ticket){
+    public void verifyInfoTicket(SoftAssert softAssertions, Ticket ticket) {
         String actualDepartDate = getInfoBookTicketSucc("Depart Date");
         String actualDepartStation = getInfoBookTicketSucc("Depart Station");
         String actualArriveStaion = getInfoBookTicketSucc("Arrive Station");
@@ -52,4 +74,6 @@ public class BookTicketsPage extends PageBase {
         softAssertions.assertEquals(actualSeatType, ticket.getSeatType().getSeatTypeValue());
         softAssertions.assertEquals(actualAmount, ticket.getTicketAmount());
     }
+
+
 }

@@ -1,31 +1,33 @@
+import base.DataSets;
 import models.User;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import utils.Action;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.LoginPage;
+import utils.listeners.ReportListener;
 
-public class Login extends TestBase{
+@Listeners(ReportListener.class)
+public class Login extends TestBase {
     LoginPage loginPage = new LoginPage();
 
     String invalidPwd = "123456";
     String noActiveEmail = "duyen123@gmail.com";
 
-    User validUser = new User(validEmail, validPwd);
     User UserBlankEmail = new User("", validPwd);
     User UserInvalidPwd = new User(validEmail, invalidPwd);
     User UserNoActive = new User(noActiveEmail, validPwd);
 
-    @Test(description = "User can log into Railway with valid username and password")
-    void LoginWithValidInfo(){
-        loginPage.login(validUser);
-
+    @Test(description = "User can log into Railway with valid username and password", dataProvider = "ValidUserDataProvider", dataProviderClass = DataSets.class)
+    void LoginWithValidInfo(User user) {
+        loginPage.login(user);
         String expectedResult = "Welcome " + validEmail;
         loginPage.verifyWelcomeMes(expectedResult);
     }
 
     @Test(description = "User cannot login with blank \"Username\" textbox")
-    void LoginWithBlankEmail(){
+    void LoginWithBlankEmail() {
         loginPage.login(UserBlankEmail);
 
         String expectedResult = "There was a problem with your login and/or errors exist in your form.";
@@ -34,7 +36,7 @@ public class Login extends TestBase{
     }
 
     @Test(description = "User cannot log into Railway with invalid password")
-    void LoginWithInvalidPwd(){
+    void LoginWithInvalidPwd() {
         loginPage.login(UserInvalidPwd);
 
         String expectedResult = "There was a problem with your login and/or errors exist in your form.";
@@ -42,7 +44,7 @@ public class Login extends TestBase{
     }
 
     @Test(description = "System shows message when user enters wrong password many times")
-    void LoginWithWrongPwdManyTime(){
+    void LoginWithWrongPwdManyTime() {
         loginPage.login(UserInvalidPwd);
 
         String expectedResult = "Invalid username or password. Please try again.";
@@ -55,7 +57,7 @@ public class Login extends TestBase{
     }
 
     @Test(description = "User can't login with an account hasn't been activated")
-    void LoginWithInactiveEmail(){
+    void LoginWithInactiveEmail() {
         loginPage.login(UserNoActive);
 
         String expectedResult = "Invalid username or password. Please try again.";

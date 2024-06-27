@@ -32,4 +32,4 @@ build/
 .DS_Store
 
 ### Test Result ###
-testNG/
+ExtentReports/

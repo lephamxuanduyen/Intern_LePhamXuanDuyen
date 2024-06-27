@@ -2,17 +2,20 @@ import enums.TabName;
 import models.User;
 import org.openqa.selenium.By;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import utils.Action;
+import utils.listeners.ReportListener;
 
-public class Logout extends TestBase{
+@Listeners(ReportListener.class)
+public class Logout extends TestBase {
     private LoginPage loginPage = new LoginPage();
 
     User validUser = new User(validEmail, validPwd);
 
     @Test(description = "User is redirected to Home page after logging out")
-    void Logout(){
+    void Logout() {
         loginPage.login(validUser);
         loginPage.selectTab(TabName.LOGOUT);
 
