@@ -4,14 +4,11 @@ import enums.TabName;
 import models.Ticket;
 import models.User;
 import org.openqa.selenium.By;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.*;
 import utils.Action;
-import utils.listeners.ReportListener;
 
-@Listeners(ReportListener.class)
 public class E2E extends TestBase {
     PageBase pageBase = new PageBase();
     RegisterPage registerPage = new RegisterPage();

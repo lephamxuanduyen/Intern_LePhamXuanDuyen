@@ -1,14 +1,11 @@
 import base.DataSets;
 import models.User;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import utils.Action;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.LoginPage;
-import utils.listeners.ReportListener;
 
-@Listeners(ReportListener.class)
 public class Login extends TestBase {
     LoginPage loginPage = new LoginPage();
 

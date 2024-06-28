@@ -1,8 +1,7 @@
 package utils;
 
-import base.ReadConfig;
 import base.PageBase;
-import com.beust.jcommander.Parameter;
+import base.ReadConfig;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -23,6 +22,7 @@ public class DriverManagement {
             case "chrome": {
                 WebDriverManager.chromedriver().setup();
                 driver.set(new ChromeDriver());
+                break;
             }
             case "firefox": {
                 WebDriverManager.firefoxdriver().setup();

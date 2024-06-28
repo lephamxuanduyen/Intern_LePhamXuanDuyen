@@ -15,9 +15,7 @@ import pages.TicketPricePage;
 import pages.TimeTablePage;
 import utils.DateUtils;
 import utils.Action;
-import utils.listeners.ReportListener;
 
-@Listeners(ReportListener.class)
 public class BookTicket extends TestBase {
     private LoginPage loginPage = new LoginPage();
     private BookTicketsPage bookTicketsPage = new BookTicketsPage();

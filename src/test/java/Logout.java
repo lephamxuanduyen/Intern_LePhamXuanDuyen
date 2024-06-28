@@ -2,13 +2,10 @@ import enums.TabName;
 import models.User;
 import org.openqa.selenium.By;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import utils.Action;
-import utils.listeners.ReportListener;
 
-@Listeners(ReportListener.class)
 public class Logout extends TestBase {
     private LoginPage loginPage = new LoginPage();
 

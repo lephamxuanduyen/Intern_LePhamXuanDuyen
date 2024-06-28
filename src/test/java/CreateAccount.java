@@ -7,8 +7,6 @@ import pages.MailPage;
 import pages.RegisterPage;
 import utils.Action;
 
-import java.util.Set;
-
 public class CreateAccount extends TestBase {
     private PageBase pageBase = new PageBase();
     private RegisterPage registerPage = new RegisterPage();

@@ -1,7 +1,7 @@
-import org.testng.annotations.AfterClass;
+import com.beust.jcommander.Parameter;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Optional;
 import utils.DriverManagement;
 
 public class TestBase {
@@ -15,9 +15,9 @@ public class TestBase {
     public static String validPid = "12345678";
     public static String emailConfirmInstruction = "thanhletraining03@gmail.com ";
 
-
     @BeforeMethod
-    void setup() {
+    @Parameter(names = {"browser"})
+    void setup(@Optional("Chrome") String browser) {
         DriverManagement.setup();
     }
 
