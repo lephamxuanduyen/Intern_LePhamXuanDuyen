@@ -1,11 +1,14 @@
 import base.PageBase;
 import enums.TabName;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.MailPage;
 import pages.ResetPasswordPage;
 import utils.Action;
+import utils.listeners.ReportListener;
 
+@Listeners(ReportListener.class)
 public class ResetPwd extends TestBase {
     private PageBase pageBase = new PageBase();
     private ResetPasswordPage resetPasswordPage = new ResetPasswordPage();

@@ -16,8 +16,7 @@ public class TestBase {
     public static String emailConfirmInstruction = "thanhletraining03@gmail.com ";
 
     @BeforeMethod
-    @Parameter(names = {"browser"})
-    void setup(@Optional("Chrome") String browser) {
+    void setup() {
         DriverManagement.setup();
     }
 

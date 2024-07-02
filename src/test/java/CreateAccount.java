@@ -1,12 +1,15 @@
 import base.PageBase;
 import models.User;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.MailPage;
 import pages.RegisterPage;
 import utils.Action;
+import utils.listeners.ReportListener;
 
+@Listeners(ReportListener.class)
 public class CreateAccount extends TestBase {
     private PageBase pageBase = new PageBase();
     private RegisterPage registerPage = new RegisterPage();

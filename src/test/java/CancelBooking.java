@@ -3,13 +3,16 @@ import enums.Station;
 import enums.TabName;
 import models.Ticket;
 import models.User;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.BookTicketsPage;
 import pages.LoginPage;
 import pages.MyTicketPage;
 import utils.DateUtils;
+import utils.listeners.ReportListener;
 
+@Listeners(ReportListener.class)
 public class CancelBooking extends TestBase {
     private LoginPage loginPage = new LoginPage();
     private BookTicketsPage bookTicketsPage = new BookTicketsPage();
