@@ -2,6 +2,7 @@ import com.beust.jcommander.Parameter;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import utils.DriverManagement;
 
 public class TestBase {
@@ -16,9 +17,17 @@ public class TestBase {
     public static String emailConfirmInstruction = "thanhletraining03@gmail.com ";
 
     @BeforeMethod
-    void setup() {
+    @Parameters({"browser", "target"})
+    void setup(@Optional("chrome") String browser, @Optional("local") String target) throws Exception {
+        DriverManagement.setBrowser(browser);
+        DriverManagement.setTarget(target);
         DriverManagement.setup();
     }
+
+//    @BeforeMethod
+//    void setup() {
+//        DriverManagement.setup();
+//    }
 
     @AfterMethod
     void clean() {

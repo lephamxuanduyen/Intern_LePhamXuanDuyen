@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suite">
-    <test thread-count="2" parallel="methods" name="Railway - Logout Firefox">
+<suite name="Suite" thread-count="2" parallel="tests">
+    <test  name="Railway - Logout Firefox">
+        <parameter name="browser" value="firefox"/>
+        <parameter name="target" value="remote"/>
         <classes>
-            <class name="Logout"/>
-            <class name="Login"></class>
+            <class name="Login">
+                <methods>
+                    <include name="LoginWithBlankEmail" />
+                </methods>
+            </class>
         </classes>
     </test> <!-- Test -->
 
+    <test  name="Railway - Logout Chrome">
+        <parameter name="browser" value="chrome"/>
+        <parameter name="target" value="remote"/>
+        <classes>
+            <class name="Logout"/>
+        </classes>
+    </test> <!-- Test -->
 </suite> <!-- Suite -->
