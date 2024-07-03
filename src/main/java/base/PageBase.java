@@ -1,5 +1,6 @@
 package base;
 
+import constant.FrameworkConstant;
 import enums.TabName;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WindowType;
@@ -19,7 +20,7 @@ public class PageBase {
         int retry = 0;
         while (retry < retryCount) {
             try {
-                DriverManagement.driver.get().get(ReadConfig.getProperty("railway.url")); // Truy cập trang web
+                DriverManagement.driver.get().get(FrameworkConstant.URL_RAILWAY); // Truy cập trang web
                 if (DriverManagement.driver.get().getTitle().contains("Safe Railway")) {
                     break; // Trang đã tải xong, thoát khỏi vòng lặp
                 }
@@ -33,7 +34,7 @@ public class PageBase {
 
     public void openMailPage() {
         DriverManagement.driver.get().switchTo().newWindow(WindowType.TAB);
-        DriverManagement.driver.get().get(ReadConfig.getProperty("tempmail.url"));
+        DriverManagement.driver.get().get(FrameworkConstant.URL_TEMPMAIL);
         tempMailWindow = DriverManagement.driver.get().getWindowHandle();
     }
 

@@ -1,13 +1,11 @@
 # Test Website Railway by Selenium + Maven + TestNG
 
-<hr/>
 
 This project contains automated tests for the Railway System using Selenium WebDriver with Java. Website for book train
 ticket.
 
 ## Setup Instructions
 
-<hr/>
 
 ### Prerequisites
 
@@ -17,6 +15,7 @@ Ensure you have the following installed on your machine:
 * Apache Maven
 * Chrome browser
 * Firefox browser
+<hr/>
 
 ### Run test
 

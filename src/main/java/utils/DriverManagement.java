@@ -18,8 +18,8 @@ import java.time.Duration;
 
 public class DriverManagement {
     public static ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
-    private static ThreadLocal<String> browser = new ThreadLocal<>();
-    private static ThreadLocal<String> target = new ThreadLocal<>();
+    private static ThreadLocal<String> browser = new ThreadLocal<String>();
+    private static ThreadLocal<String> target = new ThreadLocal<String>();
 
     public static void setup() throws Exception {
         String browser = getBrowser().toLowerCase();
@@ -47,19 +47,20 @@ public class DriverManagement {
                 break;
             }
             case "remote": {
-                String URL_GRID = "http://localhost:4444";
+//                String remoteUrl = getRemoteUrl();
+                String remoteUrl = "http://localhost:4444";
                 switch (browser) {
                     case "chrome":
                         ChromeOptions chromeOptions = new ChromeOptions();
-                        driver.set(new RemoteWebDriver(new URL(URL_GRID), chromeOptions));
+                        driver.set(new RemoteWebDriver(new URL(remoteUrl.toString()), chromeOptions));
                         break;
                     case "firefox":
                         FirefoxOptions firefoxOptions = new FirefoxOptions();
-                        driver.set(new RemoteWebDriver(new URL(URL_GRID), firefoxOptions));
+                        driver.set(new RemoteWebDriver(new URL(remoteUrl.toString()), firefoxOptions));
                         break;
                     default:
                         ChromeOptions defaultOptions = new ChromeOptions();
-                        driver.set(new RemoteWebDriver(new URL(URL_GRID), defaultOptions));
+                        driver.set(new RemoteWebDriver(new URL(remoteUrl.toString()), defaultOptions));
                         break;
                 }
                 break;
@@ -78,6 +79,14 @@ public class DriverManagement {
     public static void setTarget(String targetValue){
         target.set(targetValue);
     }
+
+//    public static void setRemoteUrl(String remoteUrlValue){
+//        remoteUrl.set(remoteUrlValue);
+//    }
+//
+//    public static String getRemoteUrl(){
+//        return remoteUrl.get();
+//    }
 
     public static String getBrowser(){
         return browser.get();

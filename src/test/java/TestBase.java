@@ -21,6 +21,7 @@ public class TestBase {
     void setup(@Optional("chrome") String browser, @Optional("local") String target) throws Exception {
         DriverManagement.setBrowser(browser);
         DriverManagement.setTarget(target);
+//        DriverManagement.setRemoteUrl(remoteUrl);
         DriverManagement.setup();
     }
 
