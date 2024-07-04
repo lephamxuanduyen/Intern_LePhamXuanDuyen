@@ -33,4 +33,12 @@ public class DataSets {
         }
         return data;
     }
+
+    @DataProvider(name = "browserData", parallel = true)
+    public Object[][] provideBrowserData() {
+        return new Object[][] {
+                { "chrome" },
+                { "firefox" }
+        };
+    }
 }

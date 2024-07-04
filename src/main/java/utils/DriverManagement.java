@@ -3,12 +3,14 @@ package utils;
 import base.PageBase;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -47,19 +49,23 @@ public class DriverManagement {
                 break;
             }
             case "remote": {
-//                String remoteUrl = getRemoteUrl();
                 String remoteUrl = "http://localhost:4444";
+                DesiredCapabilities cap = new DesiredCapabilities();
+                cap.setPlatform(Platform.ANY);
                 switch (browser) {
                     case "chrome":
                         ChromeOptions chromeOptions = new ChromeOptions();
+                        chromeOptions.merge(cap);
                         driver.set(new RemoteWebDriver(new URL(remoteUrl.toString()), chromeOptions));
                         break;
                     case "firefox":
                         FirefoxOptions firefoxOptions = new FirefoxOptions();
+                        firefoxOptions.merge(cap);
                         driver.set(new RemoteWebDriver(new URL(remoteUrl.toString()), firefoxOptions));
                         break;
                     default:
                         ChromeOptions defaultOptions = new ChromeOptions();
+                        defaultOptions.merge(cap);
                         driver.set(new RemoteWebDriver(new URL(remoteUrl.toString()), defaultOptions));
                         break;
                 }
@@ -68,7 +74,7 @@ public class DriverManagement {
         }
 
 
-        DriverManagement.driver.get().manage().window().maximize();
+        driver.get().manage().window().maximize();
         PageBase.openRailway();
     }
 
@@ -78,6 +84,14 @@ public class DriverManagement {
 
     public static void setTarget(String targetValue){
         target.set(targetValue);
+    }
+
+    public static WebDriver getDriver() {
+        return driver.get();
+    }
+
+    public static void setDriver(WebDriver webDriver) {
+        driver.set(webDriver);
     }
 
 //    public static void setRemoteUrl(String remoteUrlValue){
