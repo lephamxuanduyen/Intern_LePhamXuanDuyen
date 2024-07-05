@@ -1,0 +1,27 @@
+{
+  "validUsers": [
+    {
+      "email": "lephamxuanduyen@gmail.com",
+      "password": "123456789"
+    },
+    {
+      "email": "duyen@grr.la",
+      "password": "123456789"
+    }
+  ],
+  "blankEmails": [
+    {
+      "email": "",
+      "password": "123456789"
+    }
+  ],
+  "bookTicket": [
+    {
+      "DepartDate": "6/30/2024",
+      "DepartStaion": "Đà Nẵng",
+      "ArriveStation": "Nha Trang",
+      "SeatType": "Soft seat",
+      "TicketAmount": "1"
+    }
+  ]
+}

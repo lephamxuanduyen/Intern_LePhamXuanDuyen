@@ -1,21 +1,19 @@
+import base.DataSets;
 import enums.TabName;
 import models.User;
 import org.openqa.selenium.By;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pages.LoginPage;
 import utils.Action;
-import utils.listeners.ReportListener;
 
-@Listeners(ReportListener.class)
-public class Logout extends TestBase {
+public class LogoutParallel extends TestBaseParallel {
     private LoginPage loginPage = new LoginPage();
 
     User validUser = new User(validEmail, validPwd);
 
-    @Test(description = "User is redirected to Home page after logging out")
-    void Logout() {
+    @Test(description = "User is redirected to Home page after logging out", dataProvider = "browserData", dataProviderClass = DataSets.class)
+    void Logout(String browser) {
         loginPage.login(validUser);
         loginPage.selectTab(TabName.LOGOUT);
 

@@ -17,5 +17,14 @@ public enum Station {
     public String getStationValue() {
         return value;
     }
+
+    public static Station fromStringtoStation(String value) {
+        for (Station station : Station.values()) {
+            if (station.getStationValue().equalsIgnoreCase(value)) {
+                return station;
+            }
+        }
+        return null;
+    }
 }
 

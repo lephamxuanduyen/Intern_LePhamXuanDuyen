@@ -1,18 +1,21 @@
 import base.PageBase;
 import enums.TabName;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.MailPage;
 import pages.ResetPasswordPage;
 import utils.Action;
+import utils.listeners.ReportListener;
 
-public class ResetPwd extends TestBase{
+@Listeners(ReportListener.class)
+public class ResetPwd extends TestBase {
     private PageBase pageBase = new PageBase();
     private ResetPasswordPage resetPasswordPage = new ResetPasswordPage();
     private MailPage mailPage = new MailPage();
 
     @Test(description = "Reset password shows error if the new password is same as current")
-    void ResetPwd(){
+    void ResetPwd() {
         resetPasswordPage.selectTab(TabName.LOGIN);
         resetPasswordPage.submitPwdResetForm(validEmail);
 
@@ -32,7 +35,7 @@ public class ResetPwd extends TestBase{
     }
 
     @Test(description = "Reset password shows error if the new password and confirm password doesn't match")
-    void ResetPwdDoesNotMatch(){
+    void ResetPwdDoesNotMatch() {
         resetPasswordPage.selectTab(TabName.LOGIN);
         resetPasswordPage.submitPwdResetForm(validEmail);
 
