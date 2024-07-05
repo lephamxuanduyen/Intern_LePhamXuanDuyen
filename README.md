@@ -13,7 +13,9 @@ ticket.
 5. Read data test from Json file 
 6. Run Selenium Grid (remote)
 
-### ✳️ Prerequisites
+<hr/>
+
+### 🔆 Prerequisites
 
 Ensure you have the following installed on your machine:
 
@@ -23,9 +25,9 @@ Ensure you have the following installed on your machine:
 * Firefox browser
 <hr/>
 
-### ️️ ✳️ How to use
+### ️️ 🔆 How to use
 
-**1. Run parallel the test case**
+### ️ ️✳️ Run parallel the test case
 
 * Run test case in suite XML (**src/test/testNG/**)
 * Run test case from Maven pom.xml file

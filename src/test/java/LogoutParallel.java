@@ -1,7 +1,5 @@
 import base.DataSets;
-import base.PageBase;
 import enums.TabName;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import models.User;
 import org.openqa.selenium.By;
 import org.testng.Assert;
