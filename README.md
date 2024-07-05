@@ -100,10 +100,3 @@ https://www.selenium.dev/documentation/webdriver/getting_started/install_drivers
 
 **📝 NOTE: Thực thi nhiều lệnh thì mở nhiều CMD**
 
-### Edit Grid in Config.properties
-
-> TARGET=remote
-
-> REMOTE_URL=192.168.1.13 (url Grid của bạn)
-
-> REMOTE_PORT=4444 (port của Grid)
