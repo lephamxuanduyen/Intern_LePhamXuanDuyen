@@ -1,0 +1,13 @@
+{
+  "port": 6666,
+  "capabilities": [
+    {
+      "browserName": "firefox",
+      "maxInstances": 5
+    }
+  ],
+  "configuration": {
+    "hubHost": "localhost",
+    "hubPort": 4444
+  }
+}
