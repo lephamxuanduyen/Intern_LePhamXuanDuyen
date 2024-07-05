@@ -68,7 +68,7 @@ Ensure you have the following installed on your machine:
 
 1. Download Selenium Grid 4: https://www.selenium.dev/downloads/
 
-(tải bản Latest stable version)
+(download Latest stable version)
 
 **selenium-server-4.22.0.jar** (updated 24/06/2024)
 
@@ -81,15 +81,18 @@ https://www.selenium.dev/documentation/webdriver/getting_started/install_drivers
 
 ### Run default 1 node
 
-✅ Mở 1 Hub với 1 Node mặc định (port 4444)
+✅ Standalone (default port 4444)
 
 > java -jar selenium-server-4.22.0.jar standalone
 
-### Run multi Node
-
-✅ Mở 1 Hub với 3 Node: (chạy 4 lệnh mở 4 CMD nhé)
+### Hub and Node
+✅ Hub
 
 > java -jar selenium-server-4.22.0.jar hub
+
+✅ Node:
+
+### More than one Node on the same machine
 
 > java -jar selenium-server-4.22.0.jar node --port 5556
 
@@ -97,6 +100,14 @@ https://www.selenium.dev/documentation/webdriver/getting_started/install_drivers
 
 > java -jar selenium-server-4.22.0.jar node --port 7778
 
+
+### More than one Node on different machines
+
+> java -jar selenium-server-4.22.0.jar hub
+
+> java -jar selenium-server-4.22.0.jar node --hub <hubIP>:4444
+
+> java -jar selenium-server-4.22.0.jar node --hub <hubIP>:4444
 
 **📝 NOTE: Thực thi nhiều lệnh thì mở nhiều CMD**
 
